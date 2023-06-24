@@ -2,7 +2,7 @@ import Advertisement from "../models/Schemas/anuncios.js";
 import Garmets from "../models/garments.js";
 
 const garmentsController = {
-  getGarmentDetail: async (req, res) => {
+  getGarmentDetailPage: async (req, res) => {
     try {
       const garment = await Garmets.findById(req.params.garmentId);
       res.render("detailGarment", {
@@ -13,7 +13,7 @@ const garmentsController = {
       throw error;
     }
   },
-  getBrandCatalog: async (req, res) => {
+  getBrandCatalogPage: async (req, res) => {
     try {
       const [garmentCatalog, advertisementNike] = await Promise.all([
         Garmets.find({ brand: req.params.brand }),
@@ -29,7 +29,7 @@ const garmentsController = {
       throw error;
     }
   },
-  selectGarmentSize: async (req, res) => {
+  selectGarmentSizePage: async (req, res) => {
     try {
       const garment = await Garmets.findById(req.params.garmentId);
       res.render("selectSize", { dataSelectedGarment: garment });
