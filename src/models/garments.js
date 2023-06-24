@@ -11,6 +11,6 @@ const garmentSchema = new mongoose.Schema(
   { collection: "Garments" }
 );
 
-const garmet = mongoose.model("Garmet", garmentSchema);
+const Garmets = mongoose.model("Garmet", garmentSchema);
 
-export default garmet;
+export default Garmets;
