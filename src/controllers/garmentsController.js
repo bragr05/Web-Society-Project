@@ -1,4 +1,4 @@
-import Advertisement from "../models/Schemas/anuncios.js";
+import Advertisement from "../models/advertisement.js";
 import Garmets from "../models/garments.js";
 
 const garmentsController = {

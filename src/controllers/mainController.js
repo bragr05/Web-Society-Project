@@ -1,27 +1,41 @@
-import Prenda from "../models/Schemas/prendas.js";
-import Advertisement from "../models/Schemas/anuncios.js";
+import Garmets from "../models/garments.js";
+import Advertisement from "../models/advertisement.js";
 
 const mainController = {
   index: async (req, res) => {
     try {
-      const prendasNike = await Prenda.find({ brand: "Nike" });
-      const prendasAdidasSamba = await Prenda.find({ brand: "Adidas" });
-      const prendasNewBalance = await Prenda.find({ brand: "New Balance" });
-      const prendasVans = await Prenda.find({ brand: "Vans" });
+      const garmentPromises = [
+        Garmets.find({ brand: "Nike" }),
+        Garmets.find({ brand: "Adidas" }),
+        Garmets.find({ brand: "New Balance" }),
+        Garmets.find({ brand: "Vans" }),
+      ];
 
-      const tarjetaPrincipal = await Advertisement.find({subject:"Home page ad"})
-      const tarjetaSecundaria = await Advertisement.find({subject:"Summer Advertisement"})
+      const advertisementPromises = [
+        Advertisement.find({ subject: "Home page ad" }),
+        Advertisement.find({ subject: "Summer Advertisement" }),
+      ];
 
-      res.render("index.pug", {
-        AdidasData: prendasAdidasSamba,
-        NikeData: prendasNike,
-        NewBalanceData :prendasNewBalance,
-        VansData:prendasVans,
-        tarjetaDataPrincipal: tarjetaPrincipal[0],
-        tarjetaDataSecundaria: tarjetaSecundaria[0],
+      const [
+        nikeGarmentsData,
+        adidasSambaGarmentsData,
+        newBalanceGarmentsData,
+        vansGarmentsData,
+      ] = await Promise.all(garmentPromises);
+
+      const [mainAdvertisementData, secondaryAdvertisementData] =
+        await Promise.all(advertisementPromises);
+
+      res.render("index", {
+        adidasSambaGarments: adidasSambaGarmentsData,
+        nikeGarments: nikeGarmentsData,
+        newBalanceGarments: newBalanceGarmentsData,
+        vansGarments: vansGarmentsData,
+        mainAdvertisement: mainAdvertisementData[0],
+        secondaryAdvertisement: secondaryAdvertisementData[0],
       });
     } catch (error) {
-      console.error("Error al obtener los detalles de la prenda:", error);
+      console.error("Error loading home page:", error);
       throw error;
     }
   },

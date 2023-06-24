@@ -1,4 +1,4 @@
-import Users from "../models/Schemas/usuarios.js";
+import Users from "../models/users.js";
 import Bcrypt from "bcrypt";
 
 // Función para realizar la compración contraseña ingresada vs la que se encuentra en BD
