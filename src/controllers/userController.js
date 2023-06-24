@@ -1,17 +1,18 @@
-import Users from "../models/Schemas/usuarios.js";
+import Users from "../models/users.js";
 
-const UserController = {
-  cargarPerfilUsuario: async (req, res) => {
-    const username = req.session.isLoggedIn;
-    const usuario = await Users.findOne({ username });
-
+const UsersController = {
+  loadUserProfile: async (req, res) => {
     try {
-      res.render("perfilUsuario", { dataUsuario: usuario });
+      const username = req.session.isLoggedIn;
+      const user = await Users.findOne({ username });
+
+      res.render("userProfile", { userData: user });
     } catch (error) {
-      console.error("Error al realizar el login:", error);
+      console.error("Error loading the user profile:", error);
       throw error;
     }
   },
 };
 
-export default UserController;
+export default UsersController;
+
