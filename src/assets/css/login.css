@@ -1,0 +1,125 @@
+.container-elements-login {
+  display: flex;
+  justify-content: center;
+  padding: 3%;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-center-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+}
+
+.container-logo-type {
+  display: flex;
+  justify-content: center;
+  margin: 1.5%;
+  cursor: pointer;
+  align-items: center;
+}
+
+.container-logo-slogan {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-right: 1.2rem;
+}
+
+.logo {
+  font-family: "Geologica", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  margin: 0;
+}
+
+.slogan {
+  font-family: "Geologica", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.circle {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(to bottom, #f60000, #f9cb58, #ffffff);
+  border-radius: 50%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+
+  font-family: "Heebo", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+}
+
+.login-input:active {
+  font-family: "Heebo", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+}
+
+.login-container-buttons {
+  margin-top: 4rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.login-button {
+  margin-bottom: 1.5rem;
+  background-color: #202020;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 5px;
+  font-family: "Geologica", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-link-register {
+  margin-bottom: 1.5rem;
+  background-color: #202020;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 5px;
+  font-family: "Geologica", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+}
+
+@media (max-width: 280px) {
+  .logo {
+    font-size: 30px;
+  }
+
+  .slogan {
+    font-size: 12px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+  }
+}
