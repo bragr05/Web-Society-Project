@@ -1,138 +1,120 @@
-import CarritoCompras from "../models/Schemas/carrito-compras.js";
-import Prenda from "../models/Schemas/prendas.js";
+import shoppingCart from "../models/shoppingCart.js";
+import Garmets from "../models/garments.js";
 
-const carritoController = {
-  agregarAlCarrito: async (req, res) => {
+const shoppingCartController = {
+  addToCart: async (req, res) => {
     try {
-      const userId = req.session.idUser;
-      const prendaId = req.body.prendaId;
-      const tallaSeleccionada = req.body.tallSeleccionada;
+      const userId = req.session.userId;
+      const garmetId = req.body.garmetId;
+      const selectedSize = req.body.selectedSize;
 
-      const carritoUsuario = await CarritoCompras.findOne({ userId: userId });
+      const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
 
-      if (!carritoUsuario) {
+      if (!shoppingCartUser) {
         // El carrito no existe, crear uno nuevo
-        const nuevoCarrito = new CarritoCompras({
+        const newUserShoppingCart = new shoppingCart({
           userId: userId,
-          items: [{ itemId: prendaId, size: tallaSeleccionada }],
+          garmets: [{ garmetId: garmetId, size: selectedSize }],
         });
 
-        await nuevoCarrito.save();
+        await newUserShoppingCart.save();
       } else {
-        // El carrito existe, agregar el nuevo item
-        carritoUsuario.items.push({
-          itemId: prendaId,
-          size: tallaSeleccionada,
+        // El carrito existe, agregar la nueva prenda
+        shoppingCartUser.garmets.push({
+          garmetId: garmetId,
+          size: selectedSize,
         });
-        await carritoUsuario.save();
+        await shoppingCartUser.save();
       }
 
       res.redirect("/");
     } catch (error) {
-      console.error("Error al agregar al carrito:", error);
+      console.error("Error adding item to shopping cart:", error);
       throw error;
     }
   },
-  recuperarCarrito: async (req, res) => {
+  getGarmentsCart: async (req, res) => {
     try {
-      const userId = req.session.idUser;
-      const carritoUsuario = await CarritoCompras.findOne({ userId: userId });
+      const userId = req.session.userId;
+      const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
 
-      if (!carritoUsuario) {
+      if (!shoppingCartUser) {
         // El carrito no existe para el usuario
-        const carritoConPrendas = {};
-        res.render("carrito-compras", {
-          carritoUsuario: carritoConPrendas,
-          totalPrecio: 0,
-          cantidadPrendas: 0,
+        res.render("shoppingCart", {
+          shoppingCartUser: {},
+          totalPrice: 0,
+          quantityGarments: 0,
         });
       } else {
-        const carritoConPrendas = await Promise.all(
-          carritoUsuario.items.map(async (item) => {
-            const prenda = await Prenda.findById(item.itemId);
+        const shoppingCartUserGarmets = await Promise.all(
+          shoppingCartUser.garmets.map(async (garmet) => {
+            const userGarmet = await Garmets.findById(garmet.garmetId);
 
             return {
-              prendaID: prenda._id,
-              size: item.size,
-              brand: prenda.brand,
-              name: prenda.name,
-              price: prenda.price,
-              image_url: prenda.image_url,
-              stock: prenda.stock,
+              garmetId: userGarmet._id,
+              size: garmet.size,
+              brand: userGarmet.brand,
+              name: userGarmet.name,
+              price: userGarmet.price,
+              image_url: userGarmet.image_url,
+              stock: userGarmet.stock,
             };
           })
         );
 
-        const total = carritoConPrendas.reduce(
-          (acum, item) => acum + item.price,
+        const totalPrice = shoppingCartUserGarmets.reduce(
+          (acum, garmet) => acum + garmet.price,
           0
         );
-        const cantidad = carritoConPrendas.length;
+        const quantityGarments = shoppingCartUserGarmets.length;
+
         res.render("carrito-compras", {
-          carritoUsuario: carritoConPrendas,
-          totalPrecio: total,
-          cantidadPrendas: cantidad,
+          shoppingCartUser: shoppingCartUserGarmets,
+          totalPrice: totalPrice,
+          quantityGarments: quantityGarments,
         });
       }
     } catch (error) {
-      console.error("Error recuperar el carrito:", error);
+      console.error("Error retrieving user shopping cart:", error);
       throw error;
     }
   },
-  eliminarDelCarrito: async (req, res) => {
+  deleteGarmentCart: async (req, res) => {
     try {
-      const userId = req.session.idUser;
-      const prendaId = req.body.prendaId;
+      const userId = req.session.userId;
+      const garmetId = req.body.garmetId;
 
-      console.log(prendaId);
-
-      const carritoUsuario = await CarritoCompras.findOne({ userId: userId });
-
-      if (!carritoUsuario) {
-        // En dado caso de que el carrito del usuario no existiera dara error
-        return res
-          .status(404)
-          .json({ error: "El carrito no existe para el usuario" });
-      }
+      const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
 
       // Filtrar el array de items para excluir la prenda a eliminar
-      carritoUsuario.items = carritoUsuario.items.filter(
-        (item) => item.itemId.toString() !== prendaId
+      shoppingCartUser.garmets = shoppingCartUser.garmets.filter(
+        (garmet) => garmet.garmetId.toString() !== garmetId
       );
 
-      await carritoUsuario.save();
+      await shoppingCartUser.save();
 
       res.redirect("/recover-cart");
     } catch (error) {
-      res.status(500).json({
-        error: "Ocurrió un error al eliminar el producto del carrito",
-      });
+      console.error("Error deleting garment from cart", error);
+      throw error;
     }
   },
-  vaciarCarritoCompras: async (req, res) => {
+  confirmShoppingCart: async (req, res) => {
     try {
-      const userId = req.session.idUser;
+      const userId = req.session.userId;
 
-      const carritoUsuario = await CarritoCompras.findOne({ userId: userId });
-
-      if (!carritoUsuario) {
-        // El carrito no existe para el usuario
-        return res
-          .status(404)
-          .json({ error: "El carrito no existe para el usuario" });
-      }
+      const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
 
       // Eliminar todos los elementos del array del index 0 a su longitud total
-      carritoUsuario.items.splice(0, carritoUsuario.items.length);
-      await carritoUsuario.save();
+      shoppingCartUser.garmets.splice(0, shoppingCartUser.garmets.length);
+      await shoppingCartUser.save();
 
-      res.render("pago-exitoso");
+      res.render("invoicePurchase ");
     } catch (error) {
-      res.status(500).json({
-        error: "Ocurrió un error al eliminar el producto del carrito",
-      });
+      console.error("Error confirming shopping cart purchase", error);
+      throw error;
     }
   },
 };
 
-export default carritoController;
+export default shoppingCartController;
