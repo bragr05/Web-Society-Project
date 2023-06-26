@@ -10,13 +10,13 @@ import {} from "./env.js";
 // Crear instancia de la aplicación Express
 const app = express();
 
-// Configuración de la vista de plantillas
-app.set("view engine", "pug");
-app.set("views", join(__dirname, "../views"));
-
 // Obtener la ruta del directorio actual
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Configuración de la vista de plantillas
+app.set("view engine", "pug");
+app.set("views", join(__dirname, "../views"));
 
 // Directorio estático para archivos de Bootstrap
 const bootstrapPath = join(__dirname, "../../node_modules/bootstrap/dist");
