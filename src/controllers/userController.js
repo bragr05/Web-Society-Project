@@ -18,7 +18,7 @@ const UsersController = {
     try {
       res.render("accountRegistration");
     } catch (error) {
-      console.error("Error al el registro:", error);
+      console.error("Error loading registration page:", error);
       throw error;
     }
   },

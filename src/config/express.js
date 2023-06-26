@@ -35,8 +35,18 @@ app.use(
 );
 
 // Rutas
-import router from "../routes/router.js";
-app.use(router);
+import routerLogin from "../routes/login.routes.js";
+import routerRegistration from "../routes/registration.routes.js";
+import routerGarments from "../routes/garments.routes.js";
+import routerMain from "../routes/main.routes.js";
+import routerUsers from "../routes/user.routes.js";
+import routershoppingCart from "../routes/shoppingCart.routes.js";
+app.use(routerLogin);
+app.use(routerRegistration);
+app.use(routerGarments);
+app.use(routerMain);
+app.use(routerUsers);
+app.use(routershoppingCart);
 
 // Exportar la aplicación
 export default app;
