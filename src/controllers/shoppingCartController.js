@@ -68,7 +68,7 @@ const shoppingCartController = {
         );
         const quantityGarments = shoppingCartUserGarmets.length;
 
-        res.render("carrito-compras", {
+        res.render("shoppingCart", {
           shoppingCartUser: shoppingCartUserGarmets,
           totalPrice: totalPrice,
           quantityGarments: quantityGarments,
@@ -109,7 +109,7 @@ const shoppingCartController = {
       shoppingCartUser.garmets.splice(0, shoppingCartUser.garmets.length);
       await shoppingCartUser.save();
 
-      res.render("invoicePurchase ");
+      res.render("invoicePurchase");
     } catch (error) {
       console.error("Error confirming shopping cart purchase", error);
       throw error;

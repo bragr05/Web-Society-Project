@@ -1,0 +1,82 @@
+.contenedor-recibo{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px #f5f5f5;
+  color: #898989;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.recibo-menasje-exito{
+  text-transform: uppercase;
+  font-family: 'Geologica', sans-serif;
+  font-weight: 100;
+  font-size: 4rem;
+  width: 3rem;
+  color: #202020;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.recibo-contendor-logotipo{
+  display: flex;
+  justify-content: center;
+  margin: 1.5%;
+  cursor: pointer;
+  align-items: center;
+}
+
+.recibo-contenedor-logo-slogan{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.recibo-circulo {
+  width:43px;
+  height: 43px;
+  background: linear-gradient(to bottom, #4200fe, #bec3ed, #ffffff);
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.recibo-slogan{
+  font-family: 'Geologica', sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+  color: #868686;
+}
+
+.recibo-contenedor-btn-regresar{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.recibo-brn-regresar{
+  margin-bottom: 1.5rem;
+  background-color: #202020;
+  color: #ffffff;
+  border: none;
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'Geologica', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+
+  .contenedor-recibo{
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .recibo-menasje-exito{
+    font-size: 2rem;
+  }
+  
+}

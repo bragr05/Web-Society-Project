@@ -1,0 +1,18 @@
+extends layout
+
+block head
+  link(rel="stylesheet", href="/css/invoicePurchase.css")
+
+block body-contenido
+  div.body-contenido
+    div.contenedor-recibo
+      div
+        p.recibo-menasje-exito Your purchase has been confirmed!
+      div.recibo-contendor-logotipo
+        div.recibo-contenedor-logo-slogan
+          p.recibo-slogan INSIDE UTOPIA
+        div.recibo-circulo
+    div.recibo-contenedor-btn-regresar
+      form(action='/', method='GET')
+        button.recibo-brn-regresar Send Me Back
+    

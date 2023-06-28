@@ -1,0 +1,183 @@
+.contenedor-carrito-compras{
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-contenerdor-estadisticas{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 1rem;
+  margin: 2rem;
+  background-color: #202020;
+  color: #ffffff;
+  border-radius: 2rem;
+
+  font-family: 'Geologica', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.cart-cantidad-prendas{
+  margin-right: 3rem;
+}
+
+.cart-prendas{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  gap: 5rem;
+  padding: 1rem;
+}
+
+.cart-prenda{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.cart-contenedor-imagen{
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.cart-prenda-img{
+  width: 85%;
+  height: auto;
+}
+
+.cart-datos-prenda{
+  flex: 1;
+  background-color: #eaeaea;
+  padding: 5%;
+  flex-direction: row;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  line-height: 1.6rem;
+  flex-direction: column;
+  display: flex;
+  
+}
+
+.cart-prenda-marca{
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Geologica", sans-serif;
+  color: #202020;
+  text-transform: uppercase;
+}
+
+
+.cart-prenda-nombre{
+  font-family: 'Heebo', sans-serif;
+  font-size: 12px;
+}
+
+.cart-prenda-precio{
+  font-size: 14px;
+  font-weight: 300;
+  
+}
+
+.cart-prenda-id{
+  display: none;
+}
+
+.cart-btn-eliminar{
+  border: none;
+  background-color: #eaeaea;
+  font-size: 2rem;
+  color: #838383;
+  cursor: pointer;
+}
+
+.cart-contenedor-btn-confirmar{
+  display: flex;
+  justify-content: center;
+}
+
+.cart-btn-confirmar{
+  border: none;
+  background-color: #015826;
+  padding: 0.8rem;
+  width: 14rem;
+  margin: 2rem;
+  font-family: 'Geologica', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-form-eliminar{
+  display: flex;
+  justify-content: center;
+}
+
+@media(max-width: 540px){
+  .cart-prendas{
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 3rem;
+    padding: 1rem;
+  }
+
+  .cart-datos-prenda{
+    line-height: 1rem;
+  }
+
+  .cart-prenda-marca{
+    font-size: 10px;
+  }
+  
+  .cart-prenda-nombre{
+    font-size: 10px;
+  }
+  
+  .cart-prenda-precio{
+    font-size: 12px;
+   
+  }
+
+  .cart-contenerdor-estadisticas{
+    font-size: 1rem;
+  }
+  
+  .cart-cantidad-prendas{
+    margin-right: 3rem;
+  }
+
+}
+
+@media(max-width: 280px){
+  .cart-prendas{
+    gap: 1rem;
+  }
+
+  .cart-datos-prenda{
+    line-height: 1rem;
+  }
+
+  .cart-prenda-marca{
+    font-size: 10px;
+  }
+  
+  .cart-prenda-nombre{
+    font-size: 10px;
+  }
+  
+  .cart-prenda-precio{
+    font-size: 12px;
+   
+  }
+
+  .cart-contenerdor-estadisticas{
+    font-size: 10px;
+  }
+  
+  .cart-cantidad-prendas{
+    margin-right: 3rem;
+  }
+
+}

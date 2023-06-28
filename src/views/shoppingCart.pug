@@ -1,0 +1,33 @@
+extends layout
+
+block head
+  link(rel="stylesheet" href="/css/shoppingCart.css")
+  script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
+
+block body-contenido
+  div
+    div.body-contenido
+      div.contenedor-carrito-compras
+        div.cart-contenerdor-estadisticas
+          p.cart-cantidad-prendas= 'In cart ' + quantityGarments
+          p.cart-precio-total= 'total $' +totalPrice
+
+        div.cart-prendas
+          each prenda in shoppingCartUser
+            div.cart-prenda
+              div.cart-contenedor-imagen
+                img.cart-prenda-img(src=prenda.image_url)
+
+              div.cart-datos-prenda
+                p.cart-prenda-marca= prenda.brand
+                p.cart-prenda-nombre= prenda.name
+                p.cart-prenda-precio= '$' +prenda.price
+                form(action='/delete-garment-to-cart' method='POST').cart-form-eliminar
+                  input(name="garmentId", value=prenda.garmentId).cart-prenda-id
+                  button(type="submit").cart-btn-eliminar
+                    i.fa-regular.fa-trash-can
+
+        - if (quantityGarments > 0)
+          form(action='/confirm-purchase' method='GET').cart-form-elimina
+            div.cart-contenedor-btn-confirmar
+              button.cart-btn-confirmar Confirm
