@@ -6,27 +6,28 @@ block head
 
 block body-contenido
   div
-    div.contenedor-detalles
-      div.detalle-contendor-imagen
-        img.detalle-imagen(src=dataSelectedGarment.image_url)
-      div.detalle-texto
-        p.detalle-marca= dataSelectedGarment.brand
-        p.detalle-nombre= dataSelectedGarment.name
-        p.detalle-precio #{dataSelectedGarment.price}$
-        p.detalle-id=dataSelectedGarment._id
+    form(action='/select-size', method='POST')
+      div.contenedor-detalles
+        div.detalle-contendor-imagen
+          img.detalle-imagen(src=dataSelectedGarment.image_url)
+        div.detalle-texto
+          p.detalle-marca= dataSelectedGarment.brand
+          p.detalle-nombre= dataSelectedGarment.name
+          p.detalle-precio #{dataSelectedGarment.price}$
+          input(name="garmentId", value=dataSelectedGarment._id).detalle-id
 
-        div.detalle-adicionales
-          span.detalle-adicional-texto
-            i.fa-solid.fa-shield.detalle-icon
-            | AUTENTICIDAD GARANTIZADA
-          span.detalle-adicional-texto
-            i.fa-solid.fa-truck.detalle-icon
-            | EN STOCK Y LISTO PARA ENVIAR
-          span.detalle-adicional-texto
-            i.fa-solid.fa-rotate-left.detalle-icon
-            | DEVOLUCIONES ACEPTADAS
-        div.detalle-conenetedor-boton
-          button(type="submit").detalle-boton-agregar-carrito Add To Cart
+          div.detalle-adicionales
+            span.detalle-adicional-texto
+              i.fa-solid.fa-shield.detalle-icon
+              | AUTENTICIDAD GARANTIZADA
+            span.detalle-adicional-texto
+              i.fa-solid.fa-truck.detalle-icon
+              | EN STOCK Y LISTO PARA ENVIAR
+            span.detalle-adicional-texto
+              i.fa-solid.fa-rotate-left.detalle-icon
+              | DEVOLUCIONES ACEPTADAS
+          div.detalle-conenetedor-boton
+            button(type="submit").detalle-boton-agregar-carrito Add To Cart
 
   script.
     // Hacer la solicitud AJAX para obtener el estado de inicio de sesión

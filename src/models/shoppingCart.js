@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const garmentsShoppingCart  = new mongoose.Schema({
-  garmetId: { type: mongoose.Schema.Types.ObjectId, ref: 'Garmet', required: true },
+  garmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Garmet', required: true },
   size: { type: String, required: true }
 });
 

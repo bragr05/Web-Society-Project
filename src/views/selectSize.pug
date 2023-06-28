@@ -1,0 +1,44 @@
+extends layout
+
+block head
+  link(rel="stylesheet", href="/css/selectSize.css")
+
+block body-contenido
+  div
+    form(action='/add-garment-to-cart', method='POST')
+      div.contenedor-selectTalla
+        div.selectTalla-contendor-imagen
+          img.selectTalla-imagen(src=dataSelectedGarment.image_url)
+          
+        div.selectTalla-texto
+          p.selectTalla-marca= dataSelectedGarment.brand
+          p.selectTalla-nombre= dataSelectedGarment.name
+          p.selectTalla-precio= dataSelectedGarment.price + '$'
+          input(name="garmentId", value=dataSelectedGarment._id).selectTalla-id
+          input(type="text", name="selectedSize").selectTalla-TallaSelecionada
+
+          p.selectTalla-mensaje Select your size
+          div.selectTalla-contenedor-lista-tallas
+            div.selectTalla-lista-Tallas
+                a.selectTalla-Talla 7
+                a.selectTalla-Talla 8
+                a.selectTalla-Talla 9
+                a.selectTalla-Talla 11
+                a.selectTalla-Talla 13
+          div.selectTalla-conenetedor-boton
+            button(type="submit").selectTalla-boton-agregar-carrito Confirm
+  script.
+    document.addEventListener("DOMContentLoaded", () => {
+      const tallaInput = document.querySelector('.selectTalla-TallaSelecionada');
+      const tallas = document.querySelectorAll('.selectTalla-Talla');
+      const boton = document.querySelector('.selectTalla-boton-agregar-carrito');
+
+      tallas.forEach((talla) => {
+        talla.addEventListener('click', (event) => {
+          const valorTalla = talla.textContent;
+          tallaInput.value = valorTalla;
+          boton.style.display ="flex";
+          boton.style.justifyContent = "center";
+        });
+      });
+    });

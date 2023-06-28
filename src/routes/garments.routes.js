@@ -14,6 +14,6 @@ function requireLogin(req, res, next) {
 
 routerGarments.get("/garment-detail/:garmentId", garmentsController.getGarmentDetailPage);
 routerGarments.get("/brands/:brand/:subject", garmentsController.getBrandCatalogPage);
-routerGarments.get("/select-size/:garmentId", requireLogin, garmentsController.selectGarmentSizePage);
+routerGarments.post("/select-size", requireLogin, garmentsController.selectGarmentSizePage);
 
 export default routerGarments;

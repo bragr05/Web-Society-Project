@@ -1,0 +1,231 @@
+.contenedor-selectTalla {
+  margin-top: 10rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+.selectTalla-texto {
+  flex: 1;
+  line-height: 50px;
+  padding-left: 2%;
+  padding-right: 2%;
+  /* Para centrar verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.selectTalla-marca {
+  font-family: "Geologica", sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: -1;
+}
+
+.selectTalla-nombre {
+  z-index: -1;
+  font-size: 30px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+}
+
+.selectTalla-precio {
+  z-index: -1;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #898989;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 200;
+  padding-bottom: 10px;
+  border-bottom: solid 2px #f5f5f5;
+}
+
+.selectTalla-contendor-imagen {
+  flex: 2;
+  padding: 10px;
+  text-align: center;
+  border-right: solid 2px #f5f5f5;
+}
+
+.selectTalla-imagen {
+  width: 100%;
+  height: auto;
+}
+
+.selectTalla-contenedor-lista-tallas{
+  display: flex;
+  justify-content: center;
+}
+
+.selectTalla-lista-Tallas {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding: 2%;
+  color: #898989;
+}
+
+.selectTalla-Talla{
+  border-left: solid 2px #f0f0f0;
+  background-color: #eaeaea;
+  color: #838383;
+  padding: 1.5rem;
+  font-family: 'Geologica', sans-serif;
+  font-size: 35px;
+  font-weight: lighter;
+  user-select: none;
+}
+
+.selectTalla-Talla:first-child{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.selectTalla-Talla:last-child{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.selectTalla-Talla:hover{
+  cursor: pointer;
+  background-color: #202020;
+  color: #ffffff;
+}
+
+
+.selectTalla-mensaje{
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+.selectTalla-conenetedor-boton{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.selectTalla-boton-agregar-carrito{
+  border: none;
+  background-color: #015826;
+  padding: 0.8rem;
+  width: 14rem;
+  margin: 2rem;
+  font-family: 'Geologica', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+}
+
+.selectTalla-id{
+  display: none;
+}
+
+.selectTalla-TallaSelecionada{
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .contenedor-selectTalla {
+    margin-top: 6rem;
+    flex-direction: column;
+  }
+
+  .selectTalla-imagen {
+    width: 50%;
+  }
+
+  .selectTalla-contendor-imagen {
+    margin-top: 4rem;
+    flex: 1;
+  }
+
+  .selectTalla-texto {
+    padding: 0rem 1rem 1rem;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  .selectTalla-marca {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .selectTalla-nombre {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .selectTalla-precio {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #f5f5f5;
+  }
+
+  .selectTalla-mensaje{
+    margin: 1rem;
+    font-size: 18px;
+  }
+
+  .selectTalla-Talla{
+    color: #838383;
+    padding: 2rem 1rem 2rem 1rem;
+    font-family: 'Geologica', sans-serif;
+    font-size: 35px;
+    font-weight: lighter;
+  }
+  
+}
+
+@media (max-width: 280px) {
+
+
+  .selectTalla-texto {
+    padding: 0rem 1rem 1rem;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  .selectTalla-marca {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .selectTalla-nombre {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .selectTalla-precio {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #f5f5f5;
+  }
+
+  .selectTalla-mensaje{
+    margin: 1rem;
+    font-size: 15px;
+  }
+
+  .selectTalla-Talla{
+    color: #838383;
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    font-family: 'Geologica', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+  }
+  
+}

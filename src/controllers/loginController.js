@@ -47,7 +47,7 @@ const loginController = {
       }
 
       req.session.isLoggedIn = user.username;
-      req.session.idUser = user._id;
+      req.session.userId = user._id;
 
       res.redirect("/");
     } catch (error) {

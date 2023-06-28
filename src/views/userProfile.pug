@@ -1,0 +1,34 @@
+extends layout
+
+block head
+  link(rel="stylesheet" href="/css/userProfile.css")
+  link(rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css")
+  script(src="https://unpkg.com/leaflet/dist/leaflet.js")
+block body-contenido
+  div
+    div.body-contenido
+      div.perfil-contenedor
+        div.perfil-centro
+          p.perfil-titulo Account Information
+          p.perfil-texto.nombre= 'Full name: ' + userData.firstName + ' ' + userData.lastName
+          p.perfil-texto.email= 'Email: ' + userData.email
+          p.perfil-texto.username= 'Username: ' + userData.username
+          p.perfil-locacion#lat= userData.location.latitude
+          p.perfil-locacion#lng= userData.location.longitude
+          p.perfil-etiqueta Address 
+          div.registro-contenedor-mapa#map
+
+  script.
+    document.addEventListener("DOMContentLoaded", function () {
+      var lat = document.getElementById("lat").textContent;
+      var lng = document.getElementById("lng").textContent;
+
+      var map = L.map("map").setView([lat, lng], 14);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(map);
+
+      var marker = L.marker([lat, lng]).addTo(map);
+    });

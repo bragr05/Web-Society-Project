@@ -31,7 +31,8 @@ const garmentsController = {
   },
   selectGarmentSizePage: async (req, res) => {
     try {
-      const garment = await Garmets.findById(req.params.garmentId);
+      const garmentId = req.body.garmentId
+      const garment = await Garmets.findById(garmentId);
       res.render("selectSize", { dataSelectedGarment: garment });
     } catch (error) {
       console.error(

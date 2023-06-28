@@ -5,7 +5,7 @@ const shoppingCartController = {
   addToCart: async (req, res) => {
     try {
       const userId = req.session.userId;
-      const garmetId = req.body.garmetId;
+      const garmentId = req.body.garmentId;
       const selectedSize = req.body.selectedSize;
 
       const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
@@ -14,14 +14,14 @@ const shoppingCartController = {
         // El carrito no existe, crear uno nuevo
         const newUserShoppingCart = new shoppingCart({
           userId: userId,
-          garmets: [{ garmetId: garmetId, size: selectedSize }],
+          garmets: [{ garmentId: garmentId, size: selectedSize }],
         });
 
         await newUserShoppingCart.save();
       } else {
         // El carrito existe, agregar la nueva prenda
         shoppingCartUser.garmets.push({
-          garmetId: garmetId,
+          garmentId: garmentId,
           size: selectedSize,
         });
         await shoppingCartUser.save();
@@ -48,10 +48,10 @@ const shoppingCartController = {
       } else {
         const shoppingCartUserGarmets = await Promise.all(
           shoppingCartUser.garmets.map(async (garmet) => {
-            const userGarmet = await Garmets.findById(garmet.garmetId);
+            const userGarmet = await Garmets.findById(garmet.garmentId);
 
             return {
-              garmetId: userGarmet._id,
+              garmentId: userGarmet._id,
               size: garmet.size,
               brand: userGarmet.brand,
               name: userGarmet.name,
@@ -82,13 +82,13 @@ const shoppingCartController = {
   deleteGarmentCart: async (req, res) => {
     try {
       const userId = req.session.userId;
-      const garmetId = req.body.garmetId;
+      const garmentId = req.body.garmentId;
 
       const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
 
       // Filtrar el array de items para excluir la prenda a eliminar
       shoppingCartUser.garmets = shoppingCartUser.garmets.filter(
-        (garmet) => garmet.garmetId.toString() !== garmetId
+        (garmet) => garmet.garmentId.toString() !== garmentId
       );
 
       await shoppingCartUser.save();

@@ -1,0 +1,61 @@
+.perfil-contenedor{
+  display: flex;
+  justify-content: center;
+  padding: 3%;
+  align-items: center;
+}
+
+.perfil-centro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+}
+
+.perfil-titulo{
+  font-family: 'Geologica', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.perfil-texto{
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.perfil-locacion{
+  display: none;
+}
+
+.perfil-etiqueta{
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  z-index: 1;
+}
+
+@media(max-width: 768px) {
+
+  .circulo {
+    width:60px;
+    height: 60px;
+  }
+  
+  .logo{
+    font-size: 30px;
+  }
+  
+  .slogan{
+    font-size: 12px;
+  }
+}
