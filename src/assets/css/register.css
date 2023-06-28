@@ -1,0 +1,131 @@
+.contenedor-elementos-registro{
+  display: flex;
+  justify-content: center;
+  padding: 3%;
+  align-items: center;
+  height: 100vh;
+}
+
+.registro-centro{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.registro-input{
+  margin-top: 2rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+}
+
+.registro-input:active{
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+}
+
+.contendor-logotipo{
+  display: flex;
+  justify-content: center;
+  margin: 1.5%;
+  cursor: pointer;
+  align-items: center;
+}
+
+.registro-contenedor-botones{
+  margin-top: 4rem;
+  
+}
+
+.registro-boton{
+  margin-bottom: 1.5rem;
+  background-color: #202020;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 5px;
+  font-family: 'Geologica', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.contenedor-logo-slogan{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.circulo {
+  width:90px;
+  height: 90px;
+  background: linear-gradient(to bottom, #008000, #ccf2d7, #ffffff);
+  border-radius: 50%;
+  padding-left: 10px;
+}
+
+.logo{
+  font-family: 'Geologica', sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+}
+
+.slogan{
+  font-family: 'Geologica', sans-serif;
+  font-weight: lighter;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.contenedor-logo-slogan{
+  padding-right: 20px;
+}
+
+.register-uno-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.etiqueta-locacion{
+  margin-top: 2rem;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+}
+
+.register-input-locacion{
+  display: none;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+}
+
+@media(max-width: 280px) {
+
+  .circulo {
+    width:60px;
+    height: 60px;
+  }
+  
+  .logo{
+    font-size: 30px;
+  }
+  
+  .slogan{
+    font-size: 12px;
+  }
+}

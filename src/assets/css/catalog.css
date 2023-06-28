@@ -1,0 +1,59 @@
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 5rem;
+}
+
+.catalogo-elemento {
+  padding: 0px;
+}
+
+.catalogo-elemento-img{
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.contenedor-informacion-elemento-catalogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 30px;
+}
+
+.elemento-catalogo-marca{
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Geologica", sans-serif;
+  color: #202020;
+}
+
+.elemento-catalogo-nombre{
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.elemento-catalogo-precio{
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.elemento-catalogo-id{
+  display: none;
+}
+
+@media(max-width: 768px){
+  .catalogo {
+    gap: 1.5rem;
+  }
+
+}
+
+@media(max-width: 280px){
+  .catalogo {
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+}

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const idSeleccionado = idElementoCatalogo.textContent;
 
     imagenElementoCatalogo.addEventListener("click", () => {
-      window.location.href = `/detalle/${idSeleccionado}`;
+      window.location.href = `/garment-detail/${idSeleccionado}`;
     });
 
   });

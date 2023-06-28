@@ -1,0 +1,27 @@
+extends layout
+
+block head
+  link(rel="stylesheet" href="/css/catalog.css")
+  link(rel="stylesheet" href="/css/mainAdvertisement.css")
+
+  script(src="/js/seeGarmentDetailCatalog.js")
+
+block body-contenido
+  div
+    div.body-contenido
+      div
+        include components/mainAdvertisement
+        +mainAdvertisementComponent(dataAdvertisement)
+      div.contenedor-catalogo
+        div.catalogo
+          each brand in dataFilteredBrand
+            div.catalogo-elemento
+              div
+                img.catalogo-elemento-img(src=brand.image_url)
+              div.contenedor-informacion-elemento-catalogo
+                p.elemento-catalogo-marca= brand.brand
+                p.elemento-catalogo-nombre= brand.name
+                p.elemento-catalogo-precio='$' + brand.price
+                p.elemento-catalogo-id= brand._id
+
+

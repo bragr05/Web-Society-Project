@@ -1,0 +1,146 @@
+.contenedor-detalles {
+  margin-top: 10rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+.detalle-texto {
+  flex: 1;
+  line-height: 50px;
+
+  padding-left: 2%;
+  padding-right: 2%;
+  /* Para centrar verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detalle-marca {
+  font-family: "Geologica", sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.detalle-nombre {
+  font-size: 30px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+}
+
+.detalle-precio {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #898989;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 200;
+}
+
+.detalle-contendor-imagen {
+  margin-top: 2rem;
+  flex: 2;
+  padding: 10px;
+  text-align: center;
+  border-right: solid 2px #f5f5f5;
+}
+
+.detalle-imagen {
+  width: 100%;
+  height: auto;
+}
+
+.detalle-adicionales {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  border: solid 2px #f5f5f5;
+  padding: 2%;
+  color: #898989;
+}
+.detalle-adicional-texto {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.detalle-icon {
+  margin-right: 10px;
+}
+
+.detalle-conenetedor-boton{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.detalle-boton-agregar-carrito{
+  border: none;
+  background-color: #015826;
+  padding: 0.8rem;
+  width: 14rem;
+  margin: 2rem;
+  font-family: 'Geologica', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.detalle-id{
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .contenedor-detalles {
+    margin-top: 6rem;
+    flex-direction: column;
+  }
+
+  .detalle-texto {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+
+    border: none;
+    
+    line-height: 20px;
+    
+  }
+
+  .detalle-marca {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .detalle-nombre {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .detalle-precio {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .detalle-contendor-imagen {
+    flex: 1;
+  }
+
+  .detalle-adicionales {
+    padding: 2%;
+    font-size: 10px;
+  }
+  .detalle-adicional-texto {
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+
+  .detalle-icon {
+    margin-right: 10px;
+  }
+}
