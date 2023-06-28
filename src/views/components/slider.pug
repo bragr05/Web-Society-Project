@@ -1,0 +1,16 @@
+mixin slider(NikeData)
+  div.contenedor-slider
+    div.slider
+      each elemento in NikeData
+        div.slider-elemento
+          div
+            img.slider-elemento-img(src=elemento.image_url)
+          div.contenedor-informacion-elemento
+            p.elemento-slider-marca= elemento.brand
+            p.elemento-slider-nombre= elemento.name
+            p.elemento-slider-precio= elemento.price
+            p.elemento-slider-id= elemento._id
+            
+    .slider-nav
+      button.slider-nav-boton-prev &#8249;
+      button.slider-nav-boton-next &#8250;

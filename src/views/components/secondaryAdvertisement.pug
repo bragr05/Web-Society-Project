@@ -1,0 +1,9 @@
+mixin secondaryAdvertisementComponent(tarjetaDataSecundaria)
+  div.tarjeta-secundaria
+    div.tarjeta-secundaria-contenedor-texto
+      div.tarjeta-secundaria-texto
+        p.tarjeta-secundaria-etiqueta= tarjetaDataSecundaria.label
+        p.tarjeta-secundaria-titulo= tarjetaDataSecundaria.title
+        p.tarjeta-secundaria-parrafo= tarjetaDataSecundaria.paragraph
+      div.tarjeta-secundaria-contenedor-imagen
+        img(src=tarjetaDataSecundaria.image_url).tarjeta-secundaria-imagen

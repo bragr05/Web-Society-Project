@@ -1,0 +1,15 @@
+.body-contenido{
+  padding: 16rem 3.1rem 3.1rem 3.1rem ;
+}
+
+@media (max-width: 1280px) {
+  .body-contenido{
+    padding: 13rem 0.5rem 0.5rem 0.5rem ;
+  }
+}
+
+@media (max-width: 912px) {
+  .body-contenido{
+    padding: 8rem 0.5rem 0.5rem 0.5rem ;
+  }
+}

@@ -1,0 +1,44 @@
+nav.nav
+  div.contenedor-botones
+    button.nav-toggle
+      i.fa-solid.fa-bars
+    div.contenedor-botones-derecha
+      form(action='/login' method='GET')
+        button(type="submit").boton-navbar.boton-login Sing Up
+      form(action='/sign-out' method='GET')
+        button(type="submit").boton-navbar.boton-exit Sign Out
+      form(action='/recover-cart' method='GET')
+        button(type="submit").boton-navbar.boton-carrito-compras
+          i.fa-solid.fa-cart-shopping
+      form(action='/profile' method='GET')
+        button(type="submit").boton-navbar.boton-perfil
+          i.fa-solid.fa-user
+  ul.nav-menu
+    li.nav-munu-item
+      a(href="#").nav-link NEW RELEASES
+    li.nav-munu-item
+      a(href="/brands/Jordan/Jordan ad").nav-link JORDAN
+    li.nav-munu-item
+      a(href="/brands/Nike/Nike ad").nav-link NIKE
+    li.nav-munu-item
+      a(href="/brands/Yeezy/Yeezy ad").nav-link YEEZY
+    li.nav-munu-item
+      a(href="/brands/New Balance/New Balance ad").nav-link NEW BALANCE
+    li.nav-munu-item
+      a(href="/brands/Adidas/Adidas ad").nav-link ADIDAS
+    li.nav-munu-item
+      a(href="/brands/Vans/Vans ad").nav-link VANS
+
+script.
+  // Hacer la solicitud AJAX para obtener el estado de inicio de sesión
+  fetch('/status-session')
+    .then(response => response.json())
+    .then(data => {
+      if (data.isLoggedIn) {
+        document.querySelector('.boton-navbar.boton-login').style.display = 'none';
+      } else {
+        document.querySelector('.boton-navbar.boton-carrito-compras').style.display = 'none';
+        document.querySelector('.boton-navbar.boton-perfil').style.display = 'none';
+        document.querySelector('.boton-navbar.boton-exit').style.display = 'none';
+      }
+    });

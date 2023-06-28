@@ -1,0 +1,33 @@
+.contendor-logotipo{
+  display: flex;
+  justify-content: center;
+  margin: 1.5%;
+  cursor: pointer;
+}
+
+.contenedor-logo-slogan{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.circulo {
+  width:43px;
+  height: 43px;
+  background: linear-gradient(to bottom, #f60000, #f9cb58, #ffffff);
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.logo{
+  font-family: 'Geologica', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.slogan{
+  font-family: 'Geologica', sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+  color: #868686;
+}

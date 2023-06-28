@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    block head
+
+    link(rel="stylesheet" href="/css/general.css")
+    link(rel="stylesheet" href="/css/navbar.css")
+    link(rel="stylesheet" href="/css/logo.css")
+    link(rel="stylesheet" href="/css/body.css")
+    link(rel="stylesheet" href="/css/footer.css")
+
+    script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
+    script(defer src="/js/visibilityNavigationBar.js")
+    script(defer src="/js/backToMainMenu.js")
+  body
+    header.header
+      div.contendor-logotipo
+        div.contenedor-logo-slogan
+          p.logo SOCIETY
+          p.slogan INSIDE UTOPIA
+        div.circulo
+      include layouts/navbar
+    block body-contenido
+    footer 
+      include layouts/footer

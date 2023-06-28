@@ -1,0 +1,12 @@
+.index-nombre-slider{
+  font-size: 20px;
+  font-family: "Geologica", sans-serif;
+  text-transform: uppercase;
+  color: #202020;
+}
+
+@media (max-width: 912px){
+  .index-nombre-slider{
+    font-size: 15px;
+  }
+}

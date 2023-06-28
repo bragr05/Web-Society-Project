@@ -1,0 +1,32 @@
+extends layout
+
+block head
+  link(rel="stylesheet", href="/css/index.css")
+  link(rel="stylesheet", href="/css/mainAdvertisement.css")
+  link(rel="stylesheet", href="/css/secondaryAdvertisement.css")
+  link(rel="stylesheet", href="/css/slider.css")
+
+  script(src="/js/sliderButtons.js")
+  script(src="/js/seeGarmentDetail.js")
+block body-contenido
+  div.body-contenido
+    div
+      include components/mainAdvertisement
+      +mainAdvertisementComponent(mainAdvertisement)
+    div
+      include components/slider
+      div
+        h1.index-nombre-slider Nike Dunks
+        +slider(nikeGarments)
+      div
+        h1.index-nombre-slider Adidas Samba
+        +slider(adidasSambaGarments)
+      div
+        h1.index-nombre-slider New Balance
+        +slider(newBalanceGarments)
+      div
+        h1.index-nombre-slider Vans
+        +slider(vansGarments)
+    div
+      include components/secondaryAdvertisement
+      +secondaryAdvertisementComponent(secondaryAdvertisement)

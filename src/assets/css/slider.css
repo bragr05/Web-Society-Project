@@ -1,0 +1,109 @@
+.contenedor-slider{
+  margin-bottom: 5%;
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider-elemento {
+  flex: 0 0 auto; /* Para adaptar al ancho del contenido */
+  margin: 0 30px;
+}
+
+.slider-elemento-img {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  max-height: 320px;
+}
+
+.slider-elemento-img:hover{
+  cursor: pointer;
+}
+
+.slider-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.slider-nav-boton-prev,
+.slider-nav-boton-next {
+  padding: 5px 10px;
+  margin: 0 160px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #131313;
+}
+
+.contenedor-informacion-elemento{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 30px;
+}
+
+.elemento-slider-marca{
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Geologica", sans-serif;
+  color: #202020;
+}
+
+.elemento-slider-nombre{
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.elemento-slider-precio{
+  font-size: 16px;
+}
+
+.elemento-slider-id{
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+
+  .slider-elemento-img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .slider {
+    overflow: scroll; /* scrollbar para dispositivos móviles */
+  }
+  
+  .slider-nav {
+    display: none; /* Ocultar botones para dispositivos móviles */
+  }
+
+  .slider-elemento{
+    margin: 0 15px;
+  }
+
+  .contenedor-informacion-elemento{
+    line-height: 22px;
+  }
+
+  .elemento-slider-marca{
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .elemento-slider-nombre{
+    font-size: 12px;
+  }
+  
+  .elemento-slider-precio{
+    font-size: 12px;
+  }
+}

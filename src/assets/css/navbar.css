@@ -1,0 +1,189 @@
+
+.header{
+  background-color: #FFFF;
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  top:0;
+  left:0;
+  text-align: center;
+  
+}
+
+.nav{
+  color: #ffffff;
+  background-color: #202020;
+  position: relative;
+  padding: 10px;
+}
+
+.nav-link{
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.nav-link:hover{
+  color: #f46b0a !important;
+}
+
+.nav-menu{
+  justify-content: center;
+  display: flex;
+  list-style: none;
+}
+
+.nav-munu-item{
+  font-weight: 200;
+  font-size: 18px;
+  margin: 0 30px;
+  width: max-content;
+}
+.nav-munu-item:hover{
+  cursor: pointer;
+}
+
+.contenedor-botones{
+  display: flex;
+  align-items: center;
+}
+
+.contenedor-botones-derecha{
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+/* menu hamburguesa */
+.nav-toggle{
+  background:none;
+  border: none;
+  color: #ffffff;
+  font-size: 25px;
+  padding: 5px;
+  cursor: pointer;
+
+  display: none;
+  transition: 0.3s;
+}
+
+.nav-toggle:hover{
+  cursor: pointer;
+  color: #f46b0a;
+}
+
+.boton-navbar{
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 10px;
+  padding: 5px;
+  background:#2b2b2b;
+}
+
+.boton-navbar:hover{
+  cursor: pointer;
+  color: #f46b0a;
+}
+
+.boton-login{
+  font-size: 20px;
+  border-radius: 5%;
+  font-family: 'Geologica', sans-serif;
+  font-weight: 600;
+}
+
+.boton-exit{
+  font-size: 20px;
+  border-radius: 5%;
+  font-family: 'Geologica', sans-serif;
+  font-weight: 600;
+}
+
+.boton-perfil{
+  font-size: 18px;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+}
+
+.boton-carrito-compras{
+  font-size: 18px;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 1280px){
+
+  .nav-link{
+    color: #656565;
+    text-decoration: none;
+    transition: 0.3s;
+
+  }
+
+  .header{
+    height: auto;
+  }
+  .nav{
+    padding-left: 0;
+  }
+  .nav-munu-item{
+    font-size: 20px;
+    line-height: 40px;
+  }
+  .nav-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    background-color: #e4e4e4;
+    padding: 0;
+    width: 100%;
+    top: 130px;
+    height: calc(100%);
+
+    /* Para un scroll si hay muchos elementos */
+    overflow-y: auto;
+
+    /* Para ocultarlo mientras no este visible */
+    right:100%;
+    transition: right 0.3s;
+
+   
+  }
+
+  .nav-toggle{
+    display: block;
+  }
+
+  /* para ocultar o mostrar el menu */
+  .nav-menu-visible{
+    right:0;
+    top: 130px;
+    
+  }
+
+  .boton-login{
+    font-size: 20px;
+    border-radius: 5%;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 600;
+  }
+  
+  .boton-perfil{
+    font-size: 18px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+  }
+  
+  .boton-carrito-compras{
+    font-size: 18px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+  }
+}

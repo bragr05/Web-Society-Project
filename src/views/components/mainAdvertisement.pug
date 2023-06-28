@@ -1,0 +1,9 @@
+mixin mainAdvertisementComponent(tarjetaPrincipal)
+  div.tarjeta-principal
+    div.tarjeta-principal-contenedor-texto
+      div.tarjeta-principal-texto
+        p.tarjeta-principal-etiqueta= tarjetaPrincipal.label
+        p.tarjeta-principal-titulo= tarjetaPrincipal.title
+        p.tarjeta-principal-parrafo= tarjetaPrincipal.paragraph
+    div.tarjeta-principal-contenedor-imagen
+      img(src=tarjetaPrincipal.image_url).tarjeta-principal-imagen
