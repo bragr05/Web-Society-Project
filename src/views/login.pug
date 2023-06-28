@@ -17,10 +17,10 @@ html
             p.slogan TO ENTER SOCIETY
           div.circle
 
-        - if (mensajeExito)
+        - if (successMessage)
           div(class="alert alert-success alert-dismissible", role='alert')
             button(class='btn-close', data-bs-dismiss='alert')
-            | #{mensajeExito}
+            | #{successMessage}
 
         - if (errorMessage)
           div(class="alert alert-danger alert-dismissible", role='alert')

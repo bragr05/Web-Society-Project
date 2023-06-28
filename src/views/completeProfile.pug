@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    meta(name="viewport", content="width=device-width,initial-scale=1")
+    link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+    script(src="/bootstrap/js/bootstrap.bundle.min.js")
+
+    link(rel="stylesheet", href="/css/register.css")
+    link(rel="stylesheet", href="https://unpkg.com/leaflet/dist/leaflet.css")
+    script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
+    script(src="https://unpkg.com/leaflet/dist/leaflet.js")
+  body
+    div.contenedor-elementos-registro
+      div.registro-centro
+        div.contendor-logotipo
+          div.contenedor-logo-slogan
+            p.logo SOCIETY
+            p.slogan CREATE NEW ACCOUNT
+          div.circulo
+
+        - if (errorMessage)
+          div(class="alert alert-danger alert-dismissible", role='alert')
+            button(class='btn-close', data-bs-dismiss='alert')
+            | #{errorMessage}
+
+        p.etiqueta-locacion Personal information
+        form(action='/validate-complete-profile', method='POST').register-uno-form
+          input(type='text',name="name", placeholder='Name').registro-input
+          input(type='text',name="lastName", placeholder='Last Name').registro-input
+          input(type='text',name="latitude").register-input-locacion#lat
+          input(type='text',name="longitude").register-input-locacion#lng
+          p.etiqueta-locacion Select your location
+          div.registro-contenedor-mapa#map
+          div.registro-contenedor-botones
+            button(type="submit").registro-boton Continue to
+
+script.
+  var map = L.map('map').setView([51.505, -0.09], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  var marker;
+
+  function onMapClick(e) {
+    if (marker) {
+      map.removeLayer(marker);
+    }
+    marker = L.marker(e.latlng).addTo(map);
+
+    var lat = e.latlng.lat;
+    var lng = e.latlng.lng;
+
+    // Almacenar los valores de latitud y longitud en variables ocultas del formulario
+    document.getElementById('lat').value = lat;
+    document.getElementById('lng').value = lng;
+  }
+
+  map.on('click', onMapClick);
+
+    
