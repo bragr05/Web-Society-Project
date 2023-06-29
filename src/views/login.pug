@@ -7,11 +7,15 @@ html
 
     link(rel="stylesheet", href="/css/login.css")
     
+    script(defer src="/js/backToMainMenu.js")
     script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
+
+    // Para el Captcha de Google lado del cliente
+    script(src="https://www.google.com/recaptcha/api.js", async, defer)
   body
     div.container-elements-login
       div.login-center-elements
-        div.container-logo-type
+        div.contendor-logotipo
           div.container-logo-slogan
             p.logo LOG IN
             p.slogan TO ENTER SOCIETY
@@ -27,9 +31,37 @@ html
             button(class='btn-close', data-bs-dismiss='alert')
             | #{errorMessage}
 
-        form(action='/validate-credentials', method='POST').login-form
-          input(type='text',name="username", placeholder='Username').login-input
-          input(type='password',name="password", placeholder='Password').login-input
+        form(action='/validate-credentials', method='POST', onsubmit='return validateForm(event)').login-form
+          input(type='text', name="username", placeholder='Username').login-input
+          div.login-containter-input-password
+            input(type='password', name="password", placeholder='Password', id="inputPassword").login-input
+            i.fa-solid.fa-eye.login-show-password
+
+          div.login-captcha-container
+            div.g-recaptcha(data-sitekey="6Lezr9wmAAAAABMwr9qjXhWjW7GEP_owFvuDvLiQ")
+
           div.login-container-buttons
             button(type="submit").login-button Log in
-            a(type="button", href="/account-registration").login-link-register Sign up
+            a(href="/account-registration").login-link-register Sign up
+script.
+  document.addEventListener("DOMContentLoaded", () => {
+      let icono = document.querySelector('.fa-solid.fa-eye.login-show-password');
+      icono.addEventListener('click', (event) => {
+        let passwordInput = document.querySelector('#inputPassword');
+        if(passwordInput.type == "password"){
+          passwordInput.type = "text"
+        }else{
+          passwordInput.type = "password"
+        }
+      });
+    });
+
+script.
+  function validateForm(event) {
+    var respuestaCaptcha = grecaptcha.getResponse();
+    if (respuestaCaptcha.length === 0) {
+      event.preventDefault();
+      alert('Please complete the reCAPTCHA');
+      return false;
+    }
+  }

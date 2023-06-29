@@ -7,6 +7,7 @@ html
     link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
     script(src="/bootstrap/js/bootstrap.bundle.min.js")
 
+    script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
 body
   div.contenedor-elementos-registro
     div.registro-centro
@@ -25,7 +26,22 @@ body
 
       form(action='/validate-account-registration', method='POST').register-uno-form
         input(type='text', name='username', placeholder='Username').registro-input
-        input(type='password', name='password', placeholder='Password').registro-input
+        div.register-containter-input-password
+          input(type='password', name='password', placeholder='Password', id="inputPassword").registro-input
+          i.fa-solid.fa-eye.register-show-password
         input(type='text', name='email', placeholder='Email').registro-input
         div.registro-contenedor-botones
           button(type="submit").registro-boton Continue to
+
+script.
+  document.addEventListener("DOMContentLoaded", () => {
+      let icono = document.querySelector('.fa-solid.fa-eye.register-show-password');
+      icono.addEventListener('click', (event) => {
+        let passwordInput = document.querySelector('#inputPassword');
+        if(passwordInput.type == "password"){
+          passwordInput.type = "text"
+        }else{
+          passwordInput.type = "password"
+        }
+      });
+    });

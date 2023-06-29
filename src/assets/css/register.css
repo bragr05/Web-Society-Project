@@ -24,6 +24,7 @@
   font-weight: 300;
   font-size: 16px;
   color: #202020;
+  width: 100%;
 }
 
 .registro-input:active{
@@ -112,6 +113,21 @@
 #map {
   height: 300px;
   width: 100%;
+}
+
+.register-containter-input-password{
+  position: relative;
+}
+
+.register-show-password {
+  color: #202020;
+  position: absolute;
+  right: 1rem;
+  top: 3.4rem;
+}
+
+.register-show-password:hover{
+  cursor: pointer;
 }
 
 @media(max-width: 280px) {
