@@ -24,7 +24,7 @@ html
             | #{errorMessage}
 
         p.etiqueta-locacion Personal information
-        form(action='/validate-complete-profile', method='POST').register-uno-form
+        form(action='/validate-registration-personal-data', method='POST').register-uno-form
           input(type='text',name="name", placeholder='Name').registro-input
           input(type='text',name="lastName", placeholder='Last Name').registro-input
           input(type='text',name="latitude").register-input-locacion#lat

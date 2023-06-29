@@ -1,19 +1,24 @@
 import { Router } from "express";
-import UsersController from "../controllers/userController.js";
+import registerController from "../controllers/registerController.js";
 
 const routerRegistration = Router();
 
 routerRegistration.get(
-  "/account-registration",
-  UsersController.accountRegistrationPage
+  "/email-registration",
+  registerController.emailRegistrationPage
 );
 routerRegistration.post(
-  "/validate-account-registration",
-  UsersController.validateAccountRegistration
+  "/validate-registration-email",
+  registerController.validateRegistrationEmailAndSendToken
 );
 routerRegistration.post(
-  "/validate-complete-profile",
-  UsersController.validateCompleteProfile
+  "/validate-registration-access-credentials",
+  registerController.validateRegistrationAccessCredentials
+);
+
+routerRegistration.post(
+  "/validate-registration-personal-data",
+  registerController.validateRegistrationPersonalData
 );
 
 export default routerRegistration;
