@@ -1,6 +1,68 @@
 import Users from "../models/users.js";
 import Validator from "validator";
 import Big from "big.js";
+import speakeasy from "speakeasy";
+import nodemailer from "nodemailer";
+import {} from "../config/env.js";
+
+// Funcion para generar y enviar el token
+async function sendToken(email) {
+  // Generar un secreto para el usuario y la comparacion fututa del token
+  const secret = speakeasy.generateSecret();
+
+  const token = speakeasy.totp({
+    secret: secret.base32,
+    encoding: "base32",
+  });
+
+  const emailTransporter = process.env.EMAIL_TRANSPORTER;
+  const emailPassword = process.env.PASS_EMAIL_TRANSPORTER;
+
+  // Configurar el transporte del correo electrónico
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: emailTransporter,
+      pass: emailPassword,
+    },
+  });
+
+  // Esperar hasta que se envíe el correo electrónico
+  await transporter.sendMail({
+    from: emailTransporter,
+    to: email,
+    subject: "Token de autenticación de doble factor",
+    text: "Aquí está tu token de autenticación: " + token,
+  });
+
+  // El secreto se usará adelante para aplicar la validación
+  return secret;
+}
+
+// Funcion para validar el token ingresado por el usuario
+function validateToken(userEnteredToken, tempSecret) {
+  // Valida esto por medio del "secret" generado al inicio
+  const isValidToken = speakeasy.totp.verify({
+    secret: tempSecret.base32,
+    encoding: "base32",
+    token: userEnteredToken,
+    window: 10, // 9 intervalos * 30 segundos por intervalo = 270 segundos
+  });
+
+  // NOTA: Parametro window: 1 para aceptar token debido a la diferencia horaria
+  return isValidToken;
+}
+
+// Funcion para saber si el token a expirado
+function validateTimeToken(tokenGeneration){
+  const currentDate = new Date();
+  const tokenGenerationDate = new Date(tokenGeneration);
+
+  const diferenciaMilisegundos = currentDate.getTime() - tokenGenerationDate.getTime();
+  const diferenciaMinutos = Math.floor(diferenciaMilisegundos / (1000 * 60));
+
+  return diferenciaMinutos < 5;
+}
 
 const registerController = {
   emailRegistrationPage: async (req, res) => {
@@ -11,7 +73,7 @@ const registerController = {
       throw error;
     }
   },
-  validateRegistrationEmailAndSendToken: (req, res) => {
+  validateRegistrationEmail: async (req, res) => {
     try {
       const email = req.body.email;
 
@@ -28,15 +90,24 @@ const registerController = {
         });
       }
 
-      //Enviar y generar el token
+      // Enviar el token por email y obtener el secreto generado para la validacion del mismo
+      const secret = await sendToken(email);
+      const fechaGeneracionToken = new Date();
 
       // Definir el obj para guardar datos del registro
       const userData = {
         email: email,
       };
 
+      const tokenData = {
+        tokenGenerationDate: fechaGeneracionToken,
+        tempSecret: secret
+      }
+
       //Almacenar en variable de session datos del registro de la cuenta
       req.session.userData = userData;
+      //Almecenar el secreto generado y fecha generacion del token
+      req.session.tokenData = tokenData;
 
       res.render("registrationAccessCredentials");
     } catch (error) {
@@ -95,13 +166,35 @@ const registerController = {
       const lastname = req.body.lastName;
       const latitude = req.body.latitude;
       const longitude = req.body.longitude;
+      const tokenEntered = req.body.token;
+
+      if (!name || !lastname || !latitude || !longitude || !tokenEntered) {
+        return res.render("registrationPersonalData", {
+          errorMessage: "All fields are required",
+        });
+      }
 
       // Obtener los datos del registro de email,username y password
       const userData = req.session.userData;
+      // Obtener el secreto generado
+      const tokenData = req.session.tokenData;
 
-      if (!name || !lastname || !latitude || !longitude) {
+      //Validar el token ingresado tomando como referencia el secreto
+      const isValidToken = validateToken(tokenEntered, tokenData.tempSecret);
+
+      if (!isValidToken) {
+        const tokenExpired = validateTimeToken(tokenData.tokenGenerationDate)
+        
+        if(!tokenExpired){
+          return res.render("login", {
+            errorMessage:
+              "The token has expired, you must start the process again!",
+          });
+        }
+
         return res.render("registrationPersonalData", {
-          errorMessage: "All fields are required",
+          errorMessage:
+            "The token entered is invalid!",
         });
       }
 
@@ -121,7 +214,9 @@ const registerController = {
       const newUser = new Users(completeRegistration);
       await newUser.save();
 
+      // Eliminar las variables de sesion
       delete req.session.userData;
+      delete req.session.tokenData;
 
       res.render("login", {
         successMessage: "The account has been successfully created!",

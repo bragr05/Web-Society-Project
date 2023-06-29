@@ -22,6 +22,9 @@ body
           button(class='btn-close', data-bs-dismiss='alert')
           | #{errorMessage}
 
+      div
+        p.register-text You must use this email address to register with Society, we will contact you through it!
+
       form(action='/validate-registration-email', method='POST').register-uno-form
         input(type='text', name='email', placeholder='Email').registro-input
         div.registro-contenedor-botones

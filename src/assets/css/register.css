@@ -130,6 +130,14 @@
   cursor: pointer;
 }
 
+.register-text{
+  color: #202020;
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  font-family: 'Heebo', sans-serif;
+}
+
 @media(max-width: 280px) {
 
   .circulo {

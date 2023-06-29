@@ -22,4 +22,5 @@ This project consists of the development of a web page for the purchase of cloth
 - `express-session` : To use session variables.
 - `bcrypt` : For user key encryption.
 - `big.js` : For handling decimals in the latitude and longitude of the user's location.
-
+- `Speakeasy` : To generate and verify two-factor authentication tokens based on the TOTP (Time-based One-Time Password) standard.
+- `nodemailer` : In order to send the generated tokens and perform two-factor authentication.

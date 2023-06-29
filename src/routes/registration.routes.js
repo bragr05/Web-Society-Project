@@ -9,7 +9,7 @@ routerRegistration.get(
 );
 routerRegistration.post(
   "/validate-registration-email",
-  registerController.validateRegistrationEmailAndSendToken
+  registerController.validateRegistrationEmail
 );
 routerRegistration.post(
   "/validate-registration-access-credentials",
