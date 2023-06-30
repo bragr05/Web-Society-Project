@@ -39,9 +39,28 @@ const loginController = {
         });
       }
 
+      //Verificar si tiene la cuenta bloqueada
+      if (user.accountLocked) {
+        return res.render("login", {
+          errorMessage:
+            'For security reasons we have locked your account! Press "Forgot Password" to start the process of unlocking and changing your password!',
+        });
+      }
+
       // Verificar la contraseña ingresada comparando los hash
       const passwordMatch = await verifyPassword(password, user.password);
       if (!passwordMatch) {
+        if (user.loginAttempts >= 3) {
+          user.accountLocked = true;
+          await user.save();
+          return res.render("login", {
+            errorMessage:
+              'For security reasons we have locked your account! Press "Forgot Password" to start the process of unlocking and changing your password!',
+          });
+        } else {
+          user.loginAttempts += 1;
+          await user.save();
+        }
         return res.render("login", {
           errorMessage: "The usuername or password are not matched!",
         });

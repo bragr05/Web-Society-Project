@@ -159,6 +159,12 @@
   font-weight: 500;
 }
 
+.login-password-must{
+  color: #202020;
+  font-weight: 300;
+  font-family: 'Heebo', sans-serif;
+}
+
 @media (max-width: 280px) {
   .logo {
     font-size: 30px;

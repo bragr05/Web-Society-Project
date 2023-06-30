@@ -25,7 +25,6 @@ async function verifyPasswordExistenceHistory(username, newPassword, res) {
         newPassword,
         passwordIteration.password
       );
-      console.log(passwordMatch);
       if (passwordMatch) {
         isDifferent = false;
         break;
@@ -38,8 +37,10 @@ async function verifyPasswordExistenceHistory(username, newPassword, res) {
       });
     }
 
-    // Guardar la contraseña si no hay problemas
+    // Guardar la contraseña si no hay problemas y reiniciar intentos de login
     user.password = newPassword;
+    user.loginAttempts = 0;
+    user.accountLocked = false;
     await user.save();
 
     res.render("login", {
