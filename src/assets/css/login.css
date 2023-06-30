@@ -152,6 +152,13 @@
   font-size: 100px;
 }
 
+.login-forgot-password{
+  text-decoration: none;
+  color: #202020;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
 @media (max-width: 280px) {
   .logo {
     font-size: 30px;

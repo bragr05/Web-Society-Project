@@ -41,12 +41,14 @@ import routerGarments from "../routes/garments.routes.js";
 import routerMain from "../routes/main.routes.js";
 import routerUsers from "../routes/user.routes.js";
 import routershoppingCart from "../routes/shoppingCart.routes.js";
+import routerChangePassword from "../routes/changePassword.routes.js";
 app.use(routerLogin);
 app.use(routerRegistration);
 app.use(routerGarments);
 app.use(routerMain);
 app.use(routerUsers);
 app.use(routershoppingCart);
+app.use(routerChangePassword);
 
 // Exportar la aplicación
 export default app;
