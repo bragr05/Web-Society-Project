@@ -12,4 +12,14 @@ routerChangePassword.post(
   passwordController.validateEmailAndUsername
 );
 
+routerChangePassword.post(
+  "/validate-change-password-token",
+  passwordController.validateChangePasswordToken
+);
+
+routerChangePassword.post(
+  "/validate-new-password",
+  passwordController.validateNewPassword
+);
+
 export default routerChangePassword;

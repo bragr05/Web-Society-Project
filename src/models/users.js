@@ -56,26 +56,29 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-// Middleware para encriptar la contraseña antes de guardarla
 
+// Middleware para encriptar la contraseña antes de guardarla
 userSchema.pre("save", async function (next) {
   try {
     if (!this.isModified("password")) {
       return next();
     }
-
+    
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
     this.password = hashedPassword;
 
-    // Encriptar contraseñas en el historial
-    for (let i = 0; i < this.passwordHistory.length; i++) {
-      const passwordEntry = this.passwordHistory[i];
-      const hashedPasswordEntry = await bcrypt.hash(
-        passwordEntry.password,
-        salt
-      );
-      passwordEntry.password = hashedPasswordEntry;
+    // Encriptar y agregar la nueva contraseña al historial
+    const newHistoryEntry = {
+      password: hashedPassword,
+      createdAt: new Date(),
+    };
+    this.passwordHistory.push(newHistoryEntry);
+
+    // Verificar si hay más de 5 contraseñas en el historial
+    if (this.passwordHistory.length > 5) {
+      // Eliminar la contraseña más antigua del historial queue
+      this.passwordHistory.shift();
     }
 
     return next();

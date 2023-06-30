@@ -1,76 +1,56 @@
 import Users from "../models/users.js";
-
-const verifyPassword = async (password, hashedPassword) => {
-  try {
-    return await Bcrypt.compare(password, hashedPassword);
-  } catch (error) {
-    throw error;
-  }
-};
+import tokensController from "./tokensControllers.js";
+import Bcrypt from "bcrypt";
 
 async function verifyPasswordExistenceHistory(username, newPassword, res) {
   try {
     const user = await Users.findOne({ username });
-
-    // Verificar si la contraseña es igual a la actual
-    const currentPasswordMatch = await verifyPassword(
+    const currentPasswordMatch = await Bcrypt.compare(
       newPassword,
       user.password
     );
-    if (!currentPasswordMatch) {
+
+    if (currentPasswordMatch) {
       return res.render("resetPassword", {
         errorMessage:
           "The password cannot be the same as the current password!",
       });
     }
 
-    // Veririfica si se encuentra en el historial
-    for (const passwordIteration of user.passwordHistory) {
-      const passwordMatch = await verifyPassword(
+    // Verificar si se encuentra en el historial
+    let isDifferent = true;
+
+    for (let passwordIteration of user.passwordHistory) {
+      let passwordMatch = await Bcrypt.compare(
         newPassword,
         passwordIteration.password
       );
+      console.log(passwordMatch);
       if (passwordMatch) {
-        return res.render("resetPassword", {
-          errorMessage: "The key must be different from the last 5!",
-        });
+        isDifferent = false;
+        break;
       }
     }
+
+    if (!isDifferent) {
+      return res.render("resetPassword", {
+        errorMessage: "The key must be different from the last 5!",
+      });
+    }
+
+    // Guardar la contraseña si no hay problemas
+    user.password = newPassword;
+    await user.save();
+
+    res.render("login", {
+      successMessage: "Password has been successfully changed.!",
+    });
   } catch (error) {
     console.error(
       "An error occurred while validating the existence of the password!",
       error
     );
     throw error;
-  }
-}
-
-async function addPasswordToHistory(username, newPassword) {
-  try {
-    const user = await Users.findOne({ username });
-
-    //Actualizar la contraseña actual
-    user.password = newPassword;
-
-    const newPasswordEntry = {
-      password: newPassword,
-      createdAt: Date.now(),
-    };
-
-    user.passwordHistory.push(newPasswordEntry);
-
-    // Verificar si hay más de 5 contraseñas en el historial
-    if (user.passwordHistory.length > 5) {
-      // Eliminar la contraseña más antigua del historial queue
-      user.passwordHistory.shift();
-    }
-
-    await user.save();
-  } catch (error) {
-    console.error(
-      "An error has occurred while adding the password to the history!",
-      error
-    );
   }
 }
 
@@ -108,19 +88,99 @@ const passwordController = {
         });
       }
 
+      //Si todo es correcto realizar envio del token
+      // Enviar el token por email y obtener el secreto generado para la validacion del mismo
+      const secret = await tokensController.sendToken(user.email, 2);
+      const fechaGeneracionToken = new Date();
+
+      const tokenData = {
+        tokenGenerationDate: fechaGeneracionToken,
+        tempSecret: secret,
+      };
+
+      const changePasswordUsername = user.username;
+
+      //Almecenar el secreto generado y fecha generacion del token
+      req.session.tokenData = tokenData;
+      req.session.changePasswordUsername = changePasswordUsername;
+
       res.render("changePasswordToken");
     } catch (error) {
       console.error("Error validating email and username", error);
       throw error;
     }
   },
-  changePassword: async (req, res) => {
-    const username = req.session.username;
-    const newPassword = req.body.newPassword;
+  validateChangePasswordToken: (req, res) => {
+    try {
+      // Obtener el secreto generado
+      const tokenData = req.session.tokenData;
+      const tokenEntered = req.body.token;
 
-    await verifyPasswordExistenceHistory(username, newPassword, res);
+      //Validar el token ingresado tomando como referencia el secreto
+      const isValidToken = tokensController.validateToken(
+        tokenEntered,
+        tokenData.tempSecret
+      );
 
-    await addPasswordToHistory(username, newPassword);
+      if (!isValidToken) {
+        const tokenExpired = tokensController.validateTimeToken(
+          tokenData.tokenGenerationDate
+        );
+
+        if (!tokenExpired) {
+          return res.render("changePasswordToken", {
+            errorMessage:
+              "The token has expired, you must start the process again!",
+          });
+        }
+
+        return res.render("changePasswordToken", {
+          errorMessage: "The token entered is invalid!",
+        });
+      }
+
+      delete req.session.tokenData;
+
+      res.render("resetPassword");
+    } catch (error) {
+      console.error(
+        "An error occurred while validating the token for password change!",
+        error
+      );
+      throw error;
+    }
+  },
+  validateNewPassword: async (req, res) => {
+    try {
+      const username = req.session.changePasswordUsername;
+      const newPassword = req.body.newPassword;
+      const confirmNewPassword = req.body.confirmNewPassword;
+
+      //Validar si las contraseñas ingresadas son iguales
+      if (newPassword != confirmNewPassword) {
+        return res.render("resetPassword", {
+          errorMessage: "Passwords do not match, they must be the same!",
+        });
+      }
+
+      /*
+        Debe tener al menos 8 caracteres
+        Debe contener al menos una letra mayúscula
+        Debe contener al menos una letra minúscula
+        Debe contener al menos un dígito numerico
+      */
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+      if (!passwordRegex.test(newPassword)) {
+        return res.render("resetPassword", {
+          errorMessage: "Password does not comply with the standard",
+        });
+      }
+
+      await verifyPasswordExistenceHistory(username, newPassword, res);
+    } catch (error) {
+      console.error("An error occurred while changing the password!", error);
+      throw error;
+    }
   },
 };
 

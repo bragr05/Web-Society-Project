@@ -153,12 +153,6 @@ const registerController = {
         },
         username: userData.username,
         password: userData.password,
-        passwordHistory: [
-          {
-            password: userData.password,
-            createdAt: passwordCreatedAt,
-          },
-        ],
         passwordLastChangedAt: passwordCreatedAt,
       };
 
