@@ -142,6 +142,7 @@ const registerController = {
       }
 
       //Objeto para guardar en BD
+      const passwordCreatedAt = new Date();
       const completeRegistration = {
         firstName: name,
         lastName: lastname,
@@ -152,6 +153,13 @@ const registerController = {
         },
         username: userData.username,
         password: userData.password,
+        passwordHistory: [
+          {
+            password: userData.password,
+            createdAt: passwordCreatedAt,
+          },
+        ],
+        passwordLastChangedAt: passwordCreatedAt,
       };
 
       const newUser = new Users(completeRegistration);
