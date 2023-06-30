@@ -30,7 +30,7 @@ const registerController = {
       }
 
       // Enviar el token por email y obtener el secreto generado para la validacion del mismo
-      const secret = await tokensController.sendToken(email,1);
+      const secret = await tokensController.sendToken(email, 1);
       const fechaGeneracionToken = new Date();
 
       // Definir el obj para guardar datos del registro
@@ -119,10 +119,15 @@ const registerController = {
       const tokenData = req.session.tokenData;
 
       //Validar el token ingresado tomando como referencia el secreto
-      const isValidToken = tokensController.validateToken(tokenEntered, tokenData.tempSecret);
+      const isValidToken = tokensController.validateToken(
+        tokenEntered,
+        tokenData.tempSecret
+      );
 
       if (!isValidToken) {
-        const tokenExpired = tokensController.validateTimeToken(tokenData.tokenGenerationDate);
+        const tokenExpired = tokensController.validateTimeToken(
+          tokenData.tokenGenerationDate
+        );
 
         if (!tokenExpired) {
           return res.render("login", {

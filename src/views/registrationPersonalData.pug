@@ -10,32 +10,33 @@ html
     script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
     script(src="https://unpkg.com/leaflet/dist/leaflet.js")
   body
-    div.contenedor-elementos-registro
-      div.registro-centro
-        div.contendor-logotipo
-          div.contenedor-logo-slogan
-            p.logo SOCIETY
-            p.slogan CREATE NEW ACCOUNT
-          div.circulo
+    div
+      div.contenedor-elementos-registro
+        div.registro-centro
+          div.contendor-logotipo
+            div.contenedor-logo-slogan
+              p.logo SOCIETY
+              p.slogan CREATE NEW ACCOUNT
+            div.circulo
 
-        - if (errorMessage)
-          div(class="alert alert-danger alert-dismissible", role='alert')
-            button(class='btn-close', data-bs-dismiss='alert')
-            | #{errorMessage}
+          - if (errorMessage)
+            div(class="alert alert-danger alert-dismissible", role='alert')
+              button(class='btn-close', data-bs-dismiss='alert')
+              | #{errorMessage}
 
-        p.etiqueta-locacion Personal information
-        form(action='/validate-registration-personal-data', method='POST').register-uno-form
-          input(type='text',name="name", placeholder='Name').registro-input
-          input(type='text',name="lastName", placeholder='Last Name').registro-input
-          input(type='text',name="latitude").register-input-locacion#lat
-          input(type='text',name="longitude").register-input-locacion#lng
-          p.etiqueta-locacion Select your location
-          div.registro-contenedor-mapa#map
-          div
-            p.register-text Please check your email inbox and enter the token sent to the email address you entered.
-          input(type='text',name="token", placeholder='Token').registro-input
-          div.registro-contenedor-botones
-            button(type="submit").registro-boton Continue to
+          p.etiqueta-locacion Personal information
+          form(action='/validate-registration-personal-data', method='POST').register-uno-form
+            input(type='text',name="name", placeholder='Name').registro-input
+            input(type='text',name="lastName", placeholder='Last Name').registro-input
+            input(type='text',name="latitude").register-input-locacion#lat
+            input(type='text',name="longitude").register-input-locacion#lng
+            p.etiqueta-locacion Select your location
+            div.registro-contenedor-mapa#map
+            div
+              p.register-text Please check your email inbox and enter the token sent to the email address you entered.
+            input(type='text',name="token", placeholder='Token').registro-input
+            div.registro-contenedor-botones
+              button(type="submit").registro-boton Continue to
 
 script.
   var map = L.map('map').setView([51.505, -0.09], 13);

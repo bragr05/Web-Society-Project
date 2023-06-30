@@ -192,6 +192,93 @@ function formatsPostSendToken(token, formatMailNumber) {
     </html>
     
     `;
+  }else if(formatMailNumber == 3){
+    tokenMailingFormat = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+    
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap");
+          @import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap");
+    
+          * {
+            margin: 0;
+            padding: 0;
+          }
+    
+          .contenedor-imagen{
+            padding: 50px;
+            padding-bottom: 0px;
+            align-items: center;
+            text-align: center;
+          }
+    
+          img{
+            width: auto;
+            height: 100px;
+          }
+    
+          .contenedor-texto {
+            padding: 50px 50px 50px 50px;
+            font-family: "Heebo", sans-serif;
+            font-weight: 300;
+          }
+    
+          .contenedor-token{
+            display: flex;
+            flex-direction: row;
+            font-family: "Heebo", sans-serif;
+            font-size: x-large;
+          }
+    
+          .text-token{
+            margin-left: 2px;
+            font-weight: bold;
+          }
+    
+          footer{
+            background-color: #202020;
+            padding: 50px;
+            align-items: center;
+            text-align: center;
+          }
+    
+          .footer-text{
+            color: white;
+            font-family: "Heebo", sans-serif;
+            font-weight: 500;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="contenedor-imagen">
+          <img src="https://tiusr3pl.cuc-carrera-ti.ac.cr/clase/brian/progra05/logo.png" alt="">
+        </div>
+        <div class="contenedor-texto">
+          <p>
+            Please find attached the security token required for double authentication on our platform. Please use it when logging in.
+          </p>
+          <br />
+          <div class="contenedor-token">
+            <p>Security Token: </p>
+            <p class="text-token"> ${token}</p>
+          </div>
+          <br />
+          <p>
+            If you have not requested this action or do not recognize this email, ignore it and <strong>change your password immediately <strong/> to secure your account.
+          </p>
+        </div>
+        <footer>
+          <div>
+            <p class="footer-text">Project Development Team</p>
+          </div>
+        </footer>
+      </body>
+    </html>
+    
+    `;
   }
 
   return tokenMailingFormat;

@@ -131,6 +131,27 @@
   justify-content: center;
 }
 
+.login-text{
+  color: #202020;
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  font-family: 'Heebo', sans-serif;
+}
+
+.login-contenedor-icono-email{
+  align-items: center;
+  text-align: center;
+}
+
+.icono-email{
+  color: #202020;
+  font-weight: 300;
+  font-family: 'Heebo', sans-serif;
+  margin-top: 1rem;
+  font-size: 100px;
+}
+
 @media (max-width: 280px) {
   .logo {
     font-size: 30px;

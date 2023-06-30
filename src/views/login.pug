@@ -1,14 +1,14 @@
 doctype html
 html
   head
-    meta(name="viewport", content="width=device-width,initial-scale=1")
-    link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
     script(src="/bootstrap/js/bootstrap.bundle.min.js")
 
-    link(rel="stylesheet", href="/css/login.css")
-    
+    link(rel="stylesheet" href="/css/login.css")
+
     script(defer src="/js/backToMainMenu.js")
-    script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
+    script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
 
     // Para el Captcha de Google lado del cliente
     script(src="https://www.google.com/recaptcha/api.js", async, defer)
@@ -22,19 +22,19 @@ html
           div.circle
 
         - if (successMessage)
-          div(class="alert alert-success alert-dismissible", role='alert')
-            button(class='btn-close', data-bs-dismiss='alert')
+          div(class="alert alert-success alert-dismissible" role='alert')
+            button(class='btn-close' data-bs-dismiss='alert')
             | #{successMessage}
 
         - if (errorMessage)
-          div(class="alert alert-danger alert-dismissible", role='alert')
-            button(class='btn-close', data-bs-dismiss='alert')
+          div(class="alert alert-danger alert-dismissible" role='alert')
+            button(class='btn-close' data-bs-dismiss='alert')
             | #{errorMessage}
 
-        form(action='/validate-credentials', method='POST', onsubmit='return validateForm(event)').login-form
-          input(type='text', name="username", placeholder='Username').login-input
+        form(action='/validate-credentials' method='POST' onsubmit='return validateForm(event)').login-form
+          input(type='text' name="username" placeholder='Username').login-input
           div.login-containter-input-password
-            input(type='password', name="password", placeholder='Password', id="inputPassword").login-input
+            input(type='password' name="password" placeholder='Password' id="inputPassword").login-input
             i.fa-solid.fa-eye.login-show-password
 
           div.login-captcha-container
@@ -45,15 +45,15 @@ html
             a(href="/email-registration").login-link-register Sign up
 script.
   document.addEventListener("DOMContentLoaded", () => {
-      let icono = document.querySelector('.fa-solid.fa-eye.login-show-password');
-      icono.addEventListener('click', (event) => {
-        let passwordInput = document.querySelector('#inputPassword');
-        if(passwordInput.type == "password"){
-          passwordInput.type = "text"
-        }else{
-          passwordInput.type = "password"
-        }
-      });
+    let icono = document.querySelector('.fa-solid.fa-eye.login-show-password');
+    icono.addEventListener('click', (event) => {
+      let passwordInput = document.querySelector('#inputPassword');
+      if(passwordInput.type == "password"){
+        passwordInput.type = "text"
+      }else{
+        passwordInput.type = "password"
+      }
+    });
     });
 
 script.

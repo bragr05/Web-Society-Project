@@ -7,5 +7,6 @@ routerLogin.get("/login", loginController.loginPage);
 routerLogin.post("/validate-credentials", loginController.validateCredentials);
 routerLogin.get("/status-session", loginController.checkLoggedIn);
 routerLogin.get("/sign-out", loginController.logOut);
+routerLogin.post("/validate-token", loginController.validateLoginToken);
 
 export default routerLogin;
