@@ -43,6 +43,8 @@ async function verifyPasswordExistenceHistory(username, newPassword, res) {
     user.accountLocked = false;
     await user.save();
 
+    delete req.session.changePasswordUsername;
+
     res.render("login", {
       successMessage: "Password has been successfully changed.!",
     });
