@@ -1,7 +1,7 @@
 import Users from "../models/users.js";
 import Bcrypt from "bcrypt";
 import tokensController from "./tokensControllers.js";
-import loginDetails from "../models/LoginDetailsSchema.js";
+import loginDetails from "../models/LoginDetails.js";
 
 // Función para realizar la compración contraseña ingresada vs la que se encuentra en BD
 const verifyPassword = async (password, hashedPassword) => {
@@ -147,19 +147,17 @@ const loginController = {
       req.session.isLoggedIn = loginData.isLoggedIn;
       req.session.userId = loginData.userId;
 
-      delete req.session.loginData;
-      delete req.session.tokenData;
-
-      const currentDate = new Date();
       const ip = req.ip;
 
       //Obtener datos para realizar auditoria de seguimiento
       const loginInformation = new loginDetails({
         userId: loginData.userId,
-        loginTime: currentDate,
         ipAddress: ip
       });
       loginInformation.save()
+
+      delete req.session.loginData;
+      delete req.session.tokenData;
 
       res.redirect("/");
     } catch (error) {

@@ -1,5 +1,41 @@
 import shoppingCart from "../models/shoppingCart.js";
 import Garmets from "../models/garments.js";
+import purchaseConfirmation from "../models/PurchaseConfirmation.js";
+
+async function getAllGarmentsCart(shoppingCartUser) {
+  const shoppingCartUserGarmets = await Promise.all(
+    shoppingCartUser.garmets.map(async (garmet) => {
+      const userGarmet = await Garmets.findById(garmet.garmentId);
+
+      return {
+        garmentId: userGarmet._id,
+        size: garmet.size,
+        brand: userGarmet.brand,
+        name: userGarmet.name,
+        price: userGarmet.price,
+        image_url: userGarmet.image_url,
+        stock: userGarmet.stock,
+      };
+    })
+  );
+
+  return shoppingCartUserGarmets;
+}
+
+function getTotalPriceTotalQuantity(shoppingCartUserGarmets) {
+  const totalPrice = shoppingCartUserGarmets.reduce(
+    (acum, garmet) => acum + garmet.price,
+    0
+  );
+  const quantityGarments = shoppingCartUserGarmets.length;
+
+  const totalPriceQuantity = {
+    totalPrice: totalPrice,
+    quantityGarments: quantityGarments,
+  };
+
+  return totalPriceQuantity;
+}
 
 const shoppingCartController = {
   addToCart: async (req, res) => {
@@ -46,32 +82,18 @@ const shoppingCartController = {
           quantityGarments: 0,
         });
       } else {
-        const shoppingCartUserGarmets = await Promise.all(
-          shoppingCartUser.garmets.map(async (garmet) => {
-            const userGarmet = await Garmets.findById(garmet.garmentId);
-
-            return {
-              garmentId: userGarmet._id,
-              size: garmet.size,
-              brand: userGarmet.brand,
-              name: userGarmet.name,
-              price: userGarmet.price,
-              image_url: userGarmet.image_url,
-              stock: userGarmet.stock,
-            };
-          })
+        const shoppingCartUserGarmets = await getAllGarmentsCart(
+          shoppingCartUser
         );
 
-        const totalPrice = shoppingCartUserGarmets.reduce(
-          (acum, garmet) => acum + garmet.price,
-          0
+        const totalPriceQuantity = getTotalPriceTotalQuantity(
+          shoppingCartUserGarmets
         );
-        const quantityGarments = shoppingCartUserGarmets.length;
 
         res.render("shoppingCart", {
           shoppingCartUser: shoppingCartUserGarmets,
-          totalPrice: totalPrice,
-          quantityGarments: quantityGarments,
+          totalPrice: totalPriceQuantity.totalPrice,
+          quantityGarments: totalPriceQuantity.quantityGarments,
         });
       }
     } catch (error) {
@@ -104,6 +126,22 @@ const shoppingCartController = {
       const userId = req.session.userId;
 
       const shoppingCartUser = await shoppingCart.findOne({ userId: userId });
+
+      const shoppingCartUserGarmets = await getAllGarmentsCart(
+        shoppingCartUser
+      );
+
+      const totalPriceQuantity = getTotalPriceTotalQuantity(
+        shoppingCartUserGarmets
+      );
+
+      //Obtener datos para realizar auditoria de seguimiento
+      const purchaseInformation = new purchaseConfirmation({
+        userId: userId,
+        totalAmount: totalPriceQuantity.totalPrice,
+        itemCount: totalPriceQuantity.quantityGarments,
+      });
+      purchaseInformation.save();
 
       // Eliminar todos los elementos del array del index 0 a su longitud total
       shoppingCartUser.garmets.splice(0, shoppingCartUser.garmets.length);

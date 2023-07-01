@@ -4,11 +4,12 @@ import mongoose from "mongoose";
 const LoginDetailsSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
   loginTime: {
     type: Date,
-    required: true,
+    default: Date.now,
   },
   ipAddress: {
     type: String,
