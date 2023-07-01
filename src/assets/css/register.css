@@ -13,7 +13,8 @@
 }
 
 .registro-input{
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   padding: 1rem;
   border: none;
   border-radius: 5px;
@@ -123,7 +124,7 @@
   color: #202020;
   position: absolute;
   right: 1rem;
-  top: 3.4rem;
+  top: 2.5rem;
 }
 
 .register-show-password:hover{
@@ -133,9 +134,30 @@
 .register-text{
   color: #202020;
   margin-top: 4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
   font-weight: 200;
   font-family: 'Heebo', sans-serif;
+}
+
+.register-contenedor-requisitos{
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+  width: 100%;
+}
+
+.register-password-must{
+  color: #202020;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: 'Heebo', sans-serif;
+}
+
+.register-password-invalid {
+  color: #bd232d;
+  font-weight: 500;
 }
 
 @media(max-width: 280px) {

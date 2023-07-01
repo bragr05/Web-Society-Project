@@ -14,5 +14,4 @@ function requireLogin(req, res, next) {
 
 routerUsers.get("/profile", requireLogin, UsersController.loadUserProfile);
 
-
 export default routerUsers;

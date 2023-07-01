@@ -2,7 +2,7 @@ import Users from "../models/users.js";
 import tokensController from "./tokensControllers.js";
 import Bcrypt from "bcrypt";
 
-async function verifyPasswordExistenceHistory(username, newPassword, res) {
+async function verifyPasswordExistenceHistory(username, newPassword, res, req) {
   try {
     const user = await Users.findOne({ username });
     const currentPasswordMatch = await Bcrypt.compare(
@@ -179,7 +179,7 @@ const passwordController = {
         });
       }
 
-      await verifyPasswordExistenceHistory(username, newPassword, res);
+      await verifyPasswordExistenceHistory(username, newPassword, res, req);
     } catch (error) {
       console.error("An error occurred while changing the password!", error);
       throw error;

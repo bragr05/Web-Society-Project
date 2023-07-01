@@ -165,6 +165,27 @@
   font-family: 'Heebo', sans-serif;
 }
 
+.login-contenedor-requisitos{
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+  width: 100%;
+}
+
+.login-password-must{
+  color: #202020;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: 'Heebo', sans-serif;
+}
+
+.login-password-invalid {
+  color: #bd232d;
+  font-weight: 500;
+}
+
 @media (max-width: 280px) {
   .logo {
     font-size: 30px;
