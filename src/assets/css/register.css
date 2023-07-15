@@ -160,6 +160,22 @@
   font-weight: 500;
 }
 
+.registro-contenedor-select{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.registro-select{
+  font-family: 'Heebo', sans-serif;
+  color: #202020;
+  font-size: 0.9rem;
+  background-color: #f8f8f8;
+  border: none;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 @media(max-width: 280px) {
 
   .circulo {

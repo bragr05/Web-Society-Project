@@ -32,6 +32,16 @@ html
             input(type='text',name="longitude").register-input-locacion#lng
             p.etiqueta-locacion Select your location
             div.registro-contenedor-mapa#map
+            div.registro-contenedor-select
+              select(id="provincia").registro-select
+                option(value="") Select a province
+
+              select(id="canton").registro-select
+                option(value="") Select a canton
+
+              select(id="distrito").registro-select
+                option(value="") Select a district
+
             div
               p.register-text Please check your email inbox and enter the token sent to the email address you entered.
             input(type='text',name="token", placeholder='Token').registro-input
