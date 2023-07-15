@@ -9,6 +9,7 @@ html
     link(rel="stylesheet", href="https://unpkg.com/leaflet/dist/leaflet.css")
     script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
     script(src="https://unpkg.com/leaflet/dist/leaflet.js")
+    script(src="/js/selectLocation.js")
   body
     div
       div.contenedor-elementos-registro
@@ -32,9 +33,18 @@ html
             input(type='text',name="longitude").register-input-locacion#lng
             p.etiqueta-locacion Select your location
             div.registro-contenedor-mapa#map
+
             div.registro-contenedor-select
               select(id="provincia").registro-select
                 option(value="") Select a province
+                option(value="Cartago") Cartago
+                option(value="San José") San José
+                option(value="Alajuela") Alajuela
+                option(value="Heredia") Heredia
+                option(value="Limón") Limón
+                option(value="Guanacaste") Guanacaste
+                option(value="Puntarenas") Puntarenas
+                
 
               select(id="canton").registro-select
                 option(value="") Select a canton
@@ -70,5 +80,6 @@ script.
   }
 
   map.on('click', onMapClick);
+
 
     
