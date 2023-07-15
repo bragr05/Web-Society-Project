@@ -27,7 +27,11 @@
 }
 
 .perfil-locacion{
-  display: none;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
 }
 
 .perfil-etiqueta{
@@ -38,11 +42,6 @@
   text-transform: uppercase;
 }
 
-#map {
-  height: 300px;
-  width: 100%;
-  z-index: 1;
-}
 
 @media(max-width: 768px) {
 

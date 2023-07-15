@@ -103,11 +103,12 @@ const registerController = {
     try {
       const name = req.body.name;
       const lastname = req.body.lastName;
-      const latitude = req.body.latitude;
-      const longitude = req.body.longitude;
+      const province = req.body.province;
+      const canton = req.body.canton;
+      const district = req.body.district;
       const tokenEntered = req.body.token;
 
-      if (!name || !lastname || !latitude || !longitude || !tokenEntered) {
+      if (!name || !lastname || !province || !canton || !district || !tokenEntered) {
         return res.render("registrationPersonalData", {
           errorMessage: "All fields are required",
         });
@@ -148,8 +149,9 @@ const registerController = {
         lastName: lastname,
         email: userData.email,
         location: {
-          latitude: new Big(latitude),
-          longitude: new Big(longitude),
+          province: province,
+          canton: canton,
+          district: district
         },
         username: userData.username,
         password: userData.password,

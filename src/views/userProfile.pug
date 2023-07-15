@@ -14,22 +14,6 @@ block body-contenido
           p.perfil-texto.email= 'Email: ' + userData.email
           p.perfil-texto.username= 'Username: ' + userData.username
           p.perfil-texto.username= 'Since: ' + userData.registeredSince
-          p.perfil-locacion#lat= userData.location.latitude
-          p.perfil-locacion#lng= userData.location.longitude
-          p.perfil-etiqueta Address 
-          div.registro-contenedor-mapa#map
+          p.perfil-locacion= 'Location: ' +userData.location.province + ', ' + userData.location.canton + ', ' + userData.location.district
 
-  script.
-    document.addEventListener("DOMContentLoaded", function () {
-      var lat = document.getElementById("lat").textContent;
-      var lng = document.getElementById("lng").textContent;
 
-      var map = L.map("map").setView([lat, lng], 14);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18,
-      }).addTo(map);
-
-      var marker = L.marker([lat, lng]).addTo(map);
-    });

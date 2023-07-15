@@ -29,13 +29,10 @@ html
           form(action='/validate-registration-personal-data', method='POST').register-uno-form
             input(type='text',name="name", placeholder='Name').registro-input
             input(type='text',name="lastName", placeholder='Last Name').registro-input
-            input(type='text',name="latitude").register-input-locacion#lat
-            input(type='text',name="longitude").register-input-locacion#lng
             p.etiqueta-locacion Select your location
-            div.registro-contenedor-mapa#map
 
             div.registro-contenedor-select
-              select(id="provincia").registro-select
+              select(id="provincia", name="province").registro-select
                 option(value="") Select a province
                 option(value="Cartago") Cartago
                 option(value="San José") San José
@@ -45,11 +42,10 @@ html
                 option(value="Guanacaste") Guanacaste
                 option(value="Puntarenas") Puntarenas
                 
-
-              select(id="canton").registro-select
+              select(id="canton", name="canton" ).registro-select
                 option(value="") Select a canton
 
-              select(id="distrito").registro-select
+              select(id="distrito", name="district").registro-select
                 option(value="") Select a district
 
             div
@@ -57,29 +53,6 @@ html
             input(type='text',name="token", placeholder='Token').registro-input
             div.registro-contenedor-botones
               button(type="submit").registro-boton Continue to
-
-script.
-  var map = L.map('map').setView([51.505, -0.09], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-  }).addTo(map);
-  var marker;
-
-  function onMapClick(e) {
-    if (marker) {
-      map.removeLayer(marker);
-    }
-    marker = L.marker(e.latlng).addTo(map);
-
-    var lat = e.latlng.lat;
-    var lng = e.latlng.lng;
-
-    // Almacenar los valores de latitud y longitud en variables ocultas del formulario
-    document.getElementById('lat').value = lat;
-    document.getElementById('lng').value = lng;
-  }
-
-  map.on('click', onMapClick);
 
 
     

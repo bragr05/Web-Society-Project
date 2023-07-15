@@ -17,14 +17,18 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   location: {
-    latitude: {
-      type: Number,
+    province: {
+      type: String,
       required: true,
     },
-    longitude: {
-      type: Number,
+    canton: {
+      type: String,
       required: true,
     },
+    district:{
+      type: String,
+      required: true,
+    }
   },
   username: {
     type: String,
