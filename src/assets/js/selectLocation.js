@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           const cantones = JSON.parse(this.responseText);
+
+           // Iterar sobre los cantones y agregarlos como opciones al dropdown de cantones
           cantones.forEach(function (canton) {
             const option = document.createElement("option");
             option.value = canton.nombre;
@@ -25,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         }
       };
+
+      // Configurar la solicitud AJAX y enviarla al servidor
       xhttp.open(
         "GET",
         "/get-cantons/" + encodeURIComponent(provinciaSeleccionada),
@@ -47,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           const distritos = JSON.parse(this.responseText);
+
+          // Iterar sobre los distritos y agregarlos como opciones al dropdown de distritos
           distritos.forEach(function (distrito) {
             const option = document.createElement("option");
             option.value = distrito;
@@ -55,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         }
       };
+
+      // Configurar la solicitud AJAX y enviarla al servidor
       xhttp.open(
         "GET",
         "/get-districts/" + encodeURIComponent(cantonSeleccionado),
