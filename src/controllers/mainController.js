@@ -1,9 +1,13 @@
 import Garmets from "../models/garments.js";
 import Advertisement from "../models/advertisement.js";
+import cargarTipoCambio from "./soapController.js";
 
 const mainController = {
   index: async (req, res) => {
     try {
+      const tipoCambio = await cargarTipoCambio();
+      console.log(tipoCambio);
+
       const garmentPromises = [
         Garmets.find({ brand: "Nike" }),
         Garmets.find({ brand: "Adidas" }),

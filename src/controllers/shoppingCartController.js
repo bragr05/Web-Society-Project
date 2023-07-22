@@ -1,6 +1,7 @@
 import shoppingCart from "../models/shoppingCart.js";
 import Garmets from "../models/garments.js";
 import purchaseConfirmation from "../models/PurchaseConfirmation.js";
+import cargarTipoCambio from "./soapController.js";
 
 async function getAllGarmentsCart(shoppingCartUser) {
   const shoppingCartUserGarmets = await Promise.all(
@@ -90,7 +91,10 @@ const shoppingCartController = {
           shoppingCartUserGarmets
         );
 
+        const tipoCambio = await cargarTipoCambio();
+
         res.render("shoppingCart", {
+          exchangeRate: tipoCambio,
           shoppingCartUser: shoppingCartUserGarmets,
           totalPrice: totalPriceQuantity.totalPrice,
           quantityGarments: totalPriceQuantity.quantityGarments,

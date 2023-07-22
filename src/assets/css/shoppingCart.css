@@ -123,6 +123,10 @@
   justify-content: center;
 }
 
+.colones{
+  font-weight: 500;
+}
+
 @media(max-width: 540px){
   .cart-prendas{
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
