@@ -3,6 +3,7 @@ extends layout
 block head
   link(rel="stylesheet" href="/css/shoppingCart.css")
   script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
+  script(src="https://www.paypal.com/sdk/js?client-id=Aenc-ZELxEr3NW_RzKXJczlvlzCLIqN55JkYNBS8A6ajWlDFugRaS7pU0sXvc27NKHrRuGVmr49BYxud")
 
 block body-contenido
   div
@@ -28,6 +29,24 @@ block body-contenido
                     i.fa-regular.fa-trash-can
 
         - if (quantityGarments > 0)
+          
           form(action='/confirm-purchase' method='GET').cart-form-elimina
             div.cart-contenedor-btn-confirmar
-              button.cart-btn-confirmar Confirm
+              div(id="paypal-button-container").cart-contenedor-btn-paypal
+              
+  script.
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: #{totalPrice}
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        // Aquí rediriges al usuario a la página '/confirm-purchase'
+        window.location.href = '/confirm-purchase';
+      }
+    }).render('#paypal-button-container');

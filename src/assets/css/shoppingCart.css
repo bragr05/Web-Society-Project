@@ -95,6 +95,13 @@
 .cart-contenedor-btn-confirmar{
   display: flex;
   justify-content: center;
+  padding: 1rem;
+}
+
+.cart-contenedor-btn-paypal{
+  display: flex;
+  justify-content: center;
+  width: 40rem;
 }
 
 .cart-btn-confirmar{
