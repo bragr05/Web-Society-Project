@@ -10,6 +10,10 @@ html
     script(src="https://kit.fontawesome.com/a2ec7d5873.js", crossorigin="anonymous")
     script(src="https://unpkg.com/leaflet/dist/leaflet.js")
     script(src="/js/selectLocation.js")
+
+    //cdn de Axios
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js')
+
   body
     div
       div.contenedor-elementos-registro
@@ -27,6 +31,7 @@ html
 
           p.etiqueta-locacion Personal information
           form(action='/validate-registration-personal-data', method='POST').register-uno-form
+            input(type='text',name="userID", placeholder='ID', maxlength='9').registro-input
             input(type='text',name="name", placeholder='Name').registro-input
             input(type='text',name="lastName", placeholder='Last Name').registro-input
             p.etiqueta-locacion Select your location
@@ -54,5 +59,24 @@ html
             div.registro-contenedor-botones
               button(type="submit").registro-boton Continue to
 
+  script.
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelector('input[name="userID"]').addEventListener('input', function() {
+        var userID = this.value;
+        var regExp = /^[0-9]{9}$/;
 
+        if (regExp.test(userID)) {
+          // Realizar la petición Axios
+          axios.get(`/get-person-data?id=${userID}`)
+            .then(function(response) {
+              // Actualizar los campos con los valores obtenidos
+              document.querySelector('input[name="name"]').value = response.data.Nombre;
+              document.querySelector('input[name="lastName"]').value = response.data.last_name;
+            })
+            .catch(function(error) {
+              console.error(error);
+            });
+        }
+      });
+    });
     

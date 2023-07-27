@@ -21,4 +21,10 @@ routerRegistration.post(
   registerController.validateRegistrationPersonalData
 );
 
+// Ruta para consumir API y evitar error de CORS
+routerRegistration.get(
+  "/get-person-data",
+  registerController.getPersons
+);
+
 export default routerRegistration;

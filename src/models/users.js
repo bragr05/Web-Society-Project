@@ -4,6 +4,10 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
+  userID: {
+    type: Number,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,

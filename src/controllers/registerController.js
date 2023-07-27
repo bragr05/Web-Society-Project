@@ -2,6 +2,7 @@ import Users from "../models/users.js";
 import Validator from "validator";
 import Big from "big.js";
 import tokensController from "./tokensControllers.js";
+import axios from "axios";
 
 const registerController = {
   emailRegistrationPage: async (req, res) => {
@@ -101,6 +102,7 @@ const registerController = {
   },
   validateRegistrationPersonalData: async (req, res) => {
     try {
+      const userID = req.body.userID;
       const name = req.body.name;
       const lastname = req.body.lastName;
       const province = req.body.province;
@@ -108,7 +110,15 @@ const registerController = {
       const district = req.body.district;
       const tokenEntered = req.body.token;
 
-      if (!name || !lastname || !province || !canton || !district || !tokenEntered) {
+      if (
+        !userID ||
+        !name ||
+        !lastname ||
+        !province ||
+        !canton ||
+        !district ||
+        !tokenEntered
+      ) {
         return res.render("registrationPersonalData", {
           errorMessage: "All fields are required",
         });
@@ -145,13 +155,14 @@ const registerController = {
       //Objeto para guardar en BD
       const passwordCreatedAt = new Date();
       const completeRegistration = {
+        userID: userID,
         firstName: name,
         lastName: lastname,
         email: userData.email,
         location: {
           province: province,
           canton: canton,
-          district: district
+          district: district,
         },
         username: userData.username,
         password: userData.password,
@@ -171,6 +182,18 @@ const registerController = {
     } catch (error) {
       console.error("Error in registering personal data:", error);
       throw error;
+    }
+  },
+  getPersons: async (req, res) => {
+    try {
+      const userID = req.query.id;
+      const apiUrl = `https://rh-persons.onrender.com/persona?id=${userID}`;
+      const response = await axios.get(apiUrl);
+      
+      res.json(response.data);
+    } catch (error) {
+      console.error("Error obtaining API Data:", error);
+      res.status(500).json({ error: "Error obtaining API data" });
     }
   },
 };
