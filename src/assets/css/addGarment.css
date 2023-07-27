@@ -1,0 +1,162 @@
+.container-elements-addGarment {
+  display: flex;
+  justify-content: center;
+  padding: 3%;
+  align-items: center;
+}
+
+.addGarment-center-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+}
+
+.contendor-logotipo {
+  display: flex;
+  justify-content: center;
+  margin: 1.5%;
+  cursor: pointer;
+  align-items: center;
+}
+
+.container-logo-slogan {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-right: 1.2rem;
+}
+
+.logo {
+  font-family: "Geologica", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  margin: 0;
+}
+
+.slogan {
+  font-family: "Geologica", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.circle {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(to bottom, #f60000, #f9cb58, #ffffff);
+  border-radius: 50%;
+}
+
+.addGarment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addGarment-input {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+
+  font-family: "Heebo", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+  width: 100%;
+}
+
+.addGarment-input:active {
+  font-family: "Heebo", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #202020;
+}
+
+.addGarment-container-buttons {
+  margin-top: 2rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.addGarment-button {
+  margin-bottom: 1.5rem;
+  background-color: #202020;
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 5px;
+  font-family: "Geologica", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+
+.addGarment-text{
+  color: #202020;
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  font-family: 'Heebo', sans-serif;
+}
+
+.addGarment-contenedor-select{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.addGarment-select{
+  font-family: 'Heebo', sans-serif;
+  color: #202020;
+  font-size: 0.9rem;
+  background-color: #f8f8f8;
+  border: none;
+  padding: 0.5rem;
+}
+
+.addGarment-contenedor-requisitos{
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+  width: 100%;
+}
+
+.addGarment-must{
+  color: #202020;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: 'Heebo', sans-serif;
+}
+
+.addGarment-invalid {
+  color: #bd232d;
+  font-weight: 500;
+}
+
+#btnSaveButon[disabled] {
+  opacity: 0.6; 
+  cursor: not-allowed; 
+}
+
+@media (max-width: 280px) {
+  .logo {
+    font-size: 30px;
+  }
+
+  .slogan {
+    font-size: 12px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+  }
+}

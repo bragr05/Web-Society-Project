@@ -6,7 +6,7 @@ async function cargarTipoCambio() {
   const fechaFormato = fecha.toLocaleDateString("es-ES");
 
   const parametros = {
-    Indicador: 317,
+    Indicador: 318,
     FechaInicio: fechaFormato,
     FechaFinal: fechaFormato,
     Nombre: "Brian Granados",
@@ -28,9 +28,6 @@ async function cargarTipoCambio() {
     // Utilizar expresión regular para obtener el valor de NUM_VALOR
     const regex = /<NUM_VALOR>(.*?)<\/NUM_VALOR>/;
     const match = regex.exec(resultXML);
-
-    console.log(match);
-    console.log(match[1]);
 
     const numValor = match[1];
     

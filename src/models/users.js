@@ -59,6 +59,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  isAdmin:{
+    type: Boolean,
+    default: false,
+  }
 });
 
 // Middleware para encriptar la contraseña antes de guardarla

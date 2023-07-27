@@ -81,9 +81,12 @@ const loginController = {
         userId: user._id,
       };
 
+      console.log(user.isAdmin);
+
       //Almecenar el secreto generado y fecha generacion del token
       req.session.tokenData = tokenData;
       req.session.loginData = loginData;
+      req.session.isAdmin = user.isAdmin;
 
       res.render("loginToken");
     } catch (error) {
@@ -152,14 +155,19 @@ const loginController = {
       //Obtener datos para realizar auditoria de seguimiento
       const loginInformation = new loginDetails({
         userId: loginData.userId,
-        ipAddress: ip
+        ipAddress: ip,
       });
-      loginInformation.save()
+      loginInformation.save();
+
 
       delete req.session.loginData;
       delete req.session.tokenData;
 
-      res.redirect("/");
+      if (req.session.isAdmin) {
+        res.redirect(`add-product-page`);
+      } else {
+        res.redirect("/");
+      }
     } catch (error) {
       console.error("Error validating login token", error);
       throw error;

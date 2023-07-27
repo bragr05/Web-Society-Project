@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+    script(src="/bootstrap/js/bootstrap.bundle.min.js")
+
+    link(rel="stylesheet" href="/css/addGarment.css")
+
+    script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
+
+  body
+    div.container-elements-addGarment
+      div.addGarment-center-elements
+        div.contendor-logotipo
+          div.container-logo-slogan
+            p.logo SOCIETY
+            p.slogan INSIDE UTOPIA
+          div.circle
+
+        div.addGarment-contenedor-requisitos
+          p(id="empty-name").addGarment-must  The name cannot be empty
+          p(id="price-numeric").addGarment-must  The price must contain only numbers
+          p(id="stock-numeric").addGarment-must  The stock must contain only numbers
+      
+        p.addGarment-text Fill in the fields to enter a new garment
+
+        - if (errorMessage)
+          div(class="alert alert-danger alert-dismissible" role='alert')
+            button(class='btn-close' data-bs-dismiss='alert')
+            | #{errorMessage}
+
+        - if (successMessage)
+          div(class="alert alert-success alert-dismissible" role='alert')
+            button(class='btn-close' data-bs-dismiss='alert')
+            | #{successMessage}
+
+        form(action='/add-product' method='POST').addGarment-form
+          input(type='text' name="name" placeholder='Garment name' id="inputName").addGarment-input
+          div.addGarment-contenedor-select
+              select(id="provincia", name="brand").addGarment-select
+                option(value="") Select a brand
+                option(value="Nike") Nike
+                option(value="Jordan") Jordan
+                option(value="Yeezy") Yeezy
+                option(value="New Balance") New Balance
+                option(value="Adidas") Adidas
+                option(value="Vans") Vans
+          input(type='text' name="price" placeholder='Garment price' id="inputPrice").addGarment-input
+          input(type='text' name="stock" placeholder='Garment stock' id="inputStock").addGarment-input
+
+          div.addGarment-container-buttons
+            button(type="submit" id="btnSaveButon").addGarment-button Save
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const btnSaveGarment = document.getElementById('btnSaveButon');
+
+      function validateInput(inputElement, regex) {
+        return regex.test(inputElement.value);
+      }
+
+      function updateButtonState() {
+        const isValidName = validateInput(document.getElementById('inputName'), /^.+$/);
+        const isValidPrice = validateInput(document.getElementById('inputPrice'), /^[0-9]+$/);
+        const isValidStock = validateInput(document.getElementById('inputStock'), /^[0-9]+$/);
+
+        btnSaveGarment.disabled = !(isValidName && isValidPrice && isValidStock);
+      }
+
+      // Asignar eventos input a los campos de entrada
+      document.getElementById('inputName').addEventListener('input', updateButtonState);
+      document.getElementById('inputPrice').addEventListener('input', updateButtonState);
+      document.getElementById('inputStock').addEventListener('input', updateButtonState);
+    });
