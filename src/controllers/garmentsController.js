@@ -90,6 +90,19 @@ const garmentsController = {
       });
     }
   },
+  getPriceComparison: async (req, res) => {
+    try {
+      const garmentName = req.params.garmentName;
+      const apiUrl = `http://127.0.0.1:8000/tienda-prenda/${garmentName}`;
+      //const apiUrl = `https://comparaciones-mercado.onrender.com/tienda-prenda/${garmentName}`;
+      const response = await axios.get(apiUrl);
+
+      res.json(response.data);
+    } catch (error) {
+      console.error("Error obtaining API Data:", error);
+      res.status(500).json({ error: "Error obtaining API data" });
+    }
+  },
 };
 
 export default garmentsController;

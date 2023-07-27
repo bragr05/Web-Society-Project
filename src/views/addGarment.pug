@@ -9,6 +9,9 @@ html
 
     script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
 
+    //cdn de Axios
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js')
+
   body
     div.container-elements-addGarment
       div.addGarment-center-elements
@@ -46,12 +49,75 @@ html
                 option(value="New Balance") New Balance
                 option(value="Adidas") Adidas
                 option(value="Vans") Vans
+          
+          table
+            tr
+              th Store Name
+              th Price
           input(type='text' name="price" placeholder='Garment price' id="inputPrice").addGarment-input
+ 
           input(type='text' name="stock" placeholder='Garment stock' id="inputStock").addGarment-input
 
           div.addGarment-container-buttons
             button(type="submit" id="btnSaveButon").addGarment-button Save
 
+    script.
+      document.addEventListener('DOMContentLoaded', function() {
+        const inputName = document.getElementById('inputName');
+        const tableBody = document.querySelector('table');
+
+        //Para no enviar una solicitud cada que se escribe
+        let delayTimer;
+
+        // Funcion para actualizar con datos nuevos
+        const updateTable = (data) => {
+          //Eliminar datos viejos
+          while (tableBody.rows.length > 1) {
+            tableBody.deleteRow(1);
+          }
+
+          // Actualizar con datos nuevos
+          data.forEach((store) => {
+            const row = tableBody.insertRow();
+            const storeNameCell = row.insertCell();
+            const priceCell = row.insertCell();
+
+            storeNameCell.textContent = store.nombre_tienda;
+            priceCell.textContent = store.precio;
+          });
+        };
+
+
+        //Funcion Mensaje de espera mientras llegan los datos de la APi
+        const showAwaitingResults = () => {
+          const row = tableBody.insertRow();
+          const messageCell = row.insertCell();
+          messageCell.colSpan = 2;
+          messageCell.textContent = 'Awaiting results...';
+        };
+
+        inputName.addEventListener('input', async (event) => {
+          const garmentName = event.target.value;
+
+          // Limpiar el temporizador si existe para evitar solicitudes de mas
+          clearTimeout(delayTimer);
+
+          // Mostrar mensaje de espera después de 500 ms de inactividad
+          delayTimer = setTimeout(async () => {
+            try {
+              showAwaitingResults();
+
+              const response = await axios.get(`/compare-prices/${garmentName}`);
+              const data = response.data;
+
+              updateTable(data);
+            } catch (error) {
+              updateTable([]);
+            }
+          }, 500);
+        });
+      });
+    
   script.
     document.addEventListener('DOMContentLoaded', function() {
       const btnSaveGarment = document.getElementById('btnSaveButon');
