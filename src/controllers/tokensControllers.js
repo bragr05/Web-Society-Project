@@ -67,7 +67,7 @@ function formatsPostSendToken(token, formatMailNumber) {
       </head>
       <body>
         <div class="contenedor-imagen">
-          <img src="https://tiusr3pl.cuc-carrera-ti.ac.cr/clase/brian/progra05/logo.png" alt="">
+          <img src="https://baby-growth-hub.s3.amazonaws.com/ImagenesSitioWeb/Logo.png" alt="">
         </div>
         <div class="contenedor-texto">
           <p>
@@ -154,7 +154,7 @@ function formatsPostSendToken(token, formatMailNumber) {
       </head>
       <body>
         <div class="contenedor-imagen">
-          <img src="https://tiusr3pl.cuc-carrera-ti.ac.cr/clase/brian/progra05/logo.png" alt="">
+          <img src="https://baby-growth-hub.s3.amazonaws.com/ImagenesSitioWeb/Logo.png" alt="">
         </div>
         <div class="contenedor-texto">
           <p>
@@ -254,7 +254,7 @@ function formatsPostSendToken(token, formatMailNumber) {
       </head>
       <body>
         <div class="contenedor-imagen">
-          <img src="https://tiusr3pl.cuc-carrera-ti.ac.cr/clase/brian/progra05/logo.png" alt="">
+          <img src="https://baby-growth-hub.s3.amazonaws.com/ImagenesSitioWeb/Logo.png" alt="">
         </div>
         <div class="contenedor-texto">
           <p>

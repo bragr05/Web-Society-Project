@@ -17,6 +17,8 @@ const mainController = {
         Advertisement.find({ subject: "Summer Advertisement" }),
       ];
 
+      
+
       const [
         nikeGarmentsData,
         adidasSambaGarmentsData,
@@ -26,7 +28,7 @@ const mainController = {
 
       const [mainAdvertisementData, secondaryAdvertisementData] =
         await Promise.all(advertisementPromises);
-
+      
       res.render("index", {
         adidasSambaGarments: adidasSambaGarmentsData,
         nikeGarments: nikeGarmentsData,
