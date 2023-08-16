@@ -11,8 +11,6 @@ const UsersController = {
         `http://127.0.0.1:8000/user/profile/${username}`
       );
 
-      console.log(userAPI.data.dataUserProfile);
-
       res.render("userProfile", { userData: userAPI.data.dataUserProfile });
     } catch (error) {
       console.error("Error loading the user profile:", error);

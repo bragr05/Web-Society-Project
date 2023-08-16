@@ -12,7 +12,7 @@ block body-contenido
         div.cart-contenerdor-estadisticas
           p.cart-cantidad-prendas= 'In cart ' + quantityGarments
           p.cart-precio-total
-            | $#{totalPrice} (₡#{(totalPrice * exchangeRate).toFixed(2)})
+            | $#{totalPrice.toLocaleString('en-US')} | ₡#{(totalPrice * exchangeRate).toLocaleString('es-ES', { maximumFractionDigits: 0 })}
 
         div.cart-prendas
           each prenda in shoppingCartUser
@@ -25,7 +25,7 @@ block body-contenido
                 p.cart-prenda-nombre= prenda.name
                 p.cart-prenda-precio= '$' + prenda.price
                 p.cart-prenda-precio.colones
-                  | ₡#{(prenda.price * exchangeRate).toFixed(2)}
+                  | ₡#{(prenda.price * exchangeRate).toLocaleString('es-ES', { maximumFractionDigits: 0 })}
                 form(action='/delete-garment-to-cart' method='POST').cart-form-eliminar
                   input(name="garmentId", value=prenda.garmentId).cart-prenda-id
                   button(type="submit").cart-btn-eliminar

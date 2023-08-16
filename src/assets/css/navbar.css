@@ -1,61 +1,60 @@
-
-.header{
-  background-color: #FFFF;
+.header {
+  background-color: #ffff;
   height: 100px;
   position: fixed;
   width: 100%;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   text-align: center;
   z-index: 1;
 }
 
-.nav{
+.nav {
   color: #ffffff;
   background-color: #202020;
   position: relative;
   padding: 10px;
 }
 
-.nav-link{
+.nav-link {
   color: #ffffff;
   text-decoration: none;
   transition: 0.3s;
 }
-.nav-link:hover{
+.nav-link:hover {
   color: #f46b0a !important;
 }
 
-.nav-menu{
+.nav-menu {
   justify-content: center;
   display: flex;
   list-style: none;
 }
 
-.nav-munu-item{
+.nav-munu-item {
   font-weight: 200;
   font-size: 18px;
   margin: 0 30px;
   width: max-content;
 }
-.nav-munu-item:hover{
+.nav-munu-item:hover {
   cursor: pointer;
 }
 
-.contenedor-botones{
+.contenedor-botones {
   display: flex;
   align-items: center;
 }
 
-.contenedor-botones-derecha{
+.contenedor-botones-derecha {
   margin-left: auto;
   display: flex;
   flex-direction: row;
 }
 
 /* menu hamburguesa */
-.nav-toggle{
-  background:none;
+.nav-toggle {
+  background: none;
   border: none;
   color: #ffffff;
   font-size: 25px;
@@ -66,48 +65,62 @@
   transition: 0.3s;
 }
 
-.nav-toggle:hover{
+.nav-toggle:hover {
   cursor: pointer;
   color: #f46b0a;
 }
 
-.boton-navbar{
+.boton-navbar {
   border: none;
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s;
   margin: 10px;
   padding: 5px;
-  background:#2b2b2b;
+  background: #2b2b2b;
+  border: solid 2px #202020;
 }
 
-.boton-navbar:hover{
-  cursor: pointer;
-  color: #f46b0a;
+.boton-navbar:hover {
+  background-color: #ffffff;
+  color: #202020;
+  border: solid 2px #202020;
+  transition: 0.2s;
 }
 
-.boton-login{
+.boton-login {
   font-size: 20px;
-  border-radius: 5%;
-  font-family: 'Geologica', sans-serif;
+  border-radius: 50%;
+  font-family: "Geologica", sans-serif;
   font-weight: 600;
+  width: 37px;
+  height: 37px;
 }
-
-.boton-exit{
+.boton-exit {
   font-size: 20px;
-  border-radius: 5%;
-  font-family: 'Geologica', sans-serif;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  font-family: "Geologica", sans-serif;
   font-weight: 600;
+  border: solid 2px #202020;
+  transition: 0.2s;
 }
 
-.boton-perfil{
+.boton-exit:hover {
+  color: #8e0001;
+  border: solid 2px #202020;
+  transition: 0.2s;
+}
+
+.boton-perfil {
   font-size: 18px;
   width: 37px;
   height: 37px;
   border-radius: 50%;
 }
 
-.boton-carrito-compras{
+.boton-carrito-compras {
   font-size: 18px;
   width: 37px;
   height: 37px;
@@ -115,26 +128,24 @@
 }
 
 /* MEDIA QUERIES */
-@media(max-width: 1280px){
-
-  .nav-link{
+@media (max-width: 1280px) {
+  .nav-link {
     color: #656565;
     text-decoration: none;
     transition: 0.3s;
-
   }
 
-  .header{
+  .header {
     height: auto;
   }
-  .nav{
+  .nav {
     padding-left: 0;
   }
-  .nav-munu-item{
+  .nav-munu-item {
     font-size: 20px;
     line-height: 40px;
   }
-  .nav-menu{
+  .nav-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,38 +160,37 @@
     overflow-y: auto;
 
     /* Para ocultarlo mientras no este visible */
-    right:100%;
+    right: 100%;
     transition: right 0.3s;
-
-   
   }
 
-  .nav-toggle{
+  .nav-toggle {
     display: block;
   }
 
   /* para ocultar o mostrar el menu */
-  .nav-menu-visible{
-    right:0;
+  .nav-menu-visible {
+    right: 0;
     top: 130px;
-    
   }
 
-  .boton-login{
+  .boton-login {
     font-size: 20px;
-    border-radius: 5%;
-    font-family: 'Geologica', sans-serif;
+    border-radius: 50%;
+    font-family: "Geologica", sans-serif;
     font-weight: 600;
+    width: 37px;
+    height: 37px;
   }
-  
-  .boton-perfil{
+
+  .boton-perfil {
     font-size: 18px;
     width: 37px;
     height: 37px;
     border-radius: 50%;
   }
-  
-  .boton-carrito-compras{
+
+  .boton-carrito-compras {
     font-size: 18px;
     width: 37px;
     height: 37px;

@@ -120,6 +120,15 @@
   border-radius: 5px;
   cursor: pointer;
   display: none;
+  transition: 0.2s;
+  border: solid 2px #015826;
+}
+
+.selectTalla-boton-agregar-carrito:hover{
+  transition: 0.2s;
+  border: solid 2px #015826;
+  background-color: #FFFFFF;
+  color: #015826;
 }
 
 .selectTalla-id{

@@ -1,9 +1,13 @@
-.contenedor-carrito-compras{
+.contenedor-carrito-compras {
   display: flex;
   flex-direction: column;
 }
 
-.cart-contenerdor-estadisticas{
+.cart-precio-total{
+  font-weight: lighter;
+}
+
+.cart-contenerdor-estadisticas {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -13,41 +17,41 @@
   color: #ffffff;
   border-radius: 2rem;
 
-  font-family: 'Geologica', sans-serif;
+  font-family: "Geologica", sans-serif;
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.cart-cantidad-prendas{
+.cart-cantidad-prendas {
   margin-right: 3rem;
 }
 
-.cart-prendas{
+.cart-prendas {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   gap: 5rem;
   padding: 1rem;
 }
 
-.cart-prenda{
+.cart-prenda {
   display: flex;
   flex-direction: row;
   padding: 1rem;
 }
 
-.cart-contenedor-imagen{
+.cart-contenedor-imagen {
   flex: 1;
   display: flex;
   align-items: center;
 }
 
-.cart-prenda-img{
+.cart-prenda-img {
   width: 85%;
   height: auto;
 }
 
-.cart-datos-prenda{
+.cart-datos-prenda {
   flex: 1;
   background-color: #eaeaea;
   padding: 5%;
@@ -57,10 +61,9 @@
   line-height: 1.6rem;
   flex-direction: column;
   display: flex;
-  
 }
 
-.cart-prenda-marca{
+.cart-prenda-marca {
   font-size: 12px;
   font-weight: bold;
   font-family: "Geologica", sans-serif;
@@ -68,127 +71,131 @@
   text-transform: uppercase;
 }
 
-
-.cart-prenda-nombre{
-  font-family: 'Heebo', sans-serif;
+.cart-prenda-nombre {
+  font-family: "Heebo", sans-serif;
   font-size: 12px;
 }
 
-.cart-prenda-precio{
+.cart-prenda-precio {
   font-size: 14px;
   font-weight: 300;
-  
 }
 
-.cart-prenda-id{
+.cart-prenda-id {
   display: none;
 }
 
-.cart-btn-eliminar{
+.cart-btn-eliminar {
   border: none;
   background-color: #eaeaea;
   font-size: 2rem;
   color: #838383;
+  transition: 0.2s;
+}
+
+.cart-btn-eliminar:hover {
+  color: #8e0001;
+  transition: 0.2s;
   cursor: pointer;
 }
 
-.cart-contenedor-btn-confirmar{
+.cart-contenedor-btn-confirmar {
   display: flex;
   justify-content: center;
   padding: 1rem;
 }
 
-.cart-contenedor-btn-paypal{
+.cart-contenedor-btn-paypal {
   display: flex;
   justify-content: center;
   width: 40rem;
 }
 
-.cart-btn-confirmar{
+.cart-btn-confirmar {
   border: none;
   background-color: #015826;
   padding: 0.8rem;
   width: 14rem;
   margin: 2rem;
-  font-family: 'Geologica', sans-serif;
+  font-family: "Geologica", sans-serif;
   font-size: 20px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.cart-form-eliminar{
+.cart-form-eliminar {
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }
 
-.colones{
+.colones {
   font-weight: 500;
 }
 
-@media(max-width: 540px){
-  .cart-prendas{
+@media (max-width: 540px) {
+  .cart-prendas {
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 3rem;
     padding: 1rem;
   }
 
-  .cart-datos-prenda{
+  .cart-datos-prenda {
     line-height: 1rem;
   }
 
-  .cart-prenda-marca{
+  .cart-prenda-marca {
     font-size: 10px;
-  }
-  
-  .cart-prenda-nombre{
-    font-size: 10px;
-  }
-  
-  .cart-prenda-precio{
-    font-size: 12px;
-   
   }
 
-  .cart-contenerdor-estadisticas{
+  .cart-prenda-nombre {
+    font-size: 10px;
+  }
+
+  .cart-prenda-precio {
+    font-size: 12px;
+  }
+
+  .cart-contenerdor-estadisticas {
     font-size: 1rem;
   }
-  
-  .cart-cantidad-prendas{
+
+  .cart-cantidad-prendas {
     margin-right: 3rem;
   }
 
+  .cart-btn-eliminar {
+    font-size: 1.3rem;
+  }
 }
 
-@media(max-width: 280px){
-  .cart-prendas{
+@media (max-width: 280px) {
+  .cart-prendas {
     gap: 1rem;
   }
 
-  .cart-datos-prenda{
+  .cart-datos-prenda {
     line-height: 1rem;
   }
 
-  .cart-prenda-marca{
+  .cart-prenda-marca {
     font-size: 10px;
-  }
-  
-  .cart-prenda-nombre{
-    font-size: 10px;
-  }
-  
-  .cart-prenda-precio{
-    font-size: 12px;
-   
   }
 
-  .cart-contenerdor-estadisticas{
+  .cart-prenda-nombre {
     font-size: 10px;
   }
-  
-  .cart-cantidad-prendas{
+
+  .cart-prenda-precio {
+    font-size: 12px;
+  }
+
+  .cart-contenerdor-estadisticas {
+    font-size: 10px;
+  }
+
+  .cart-cantidad-prendas {
     margin-right: 3rem;
   }
-
 }
