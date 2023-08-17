@@ -1,9 +1,32 @@
 .footer
   div.footer-contenedor
-    div
-      p.footer-item-text Copyright © 2023 Society. 
-    div
-      p.footer-item-text Todos los derechos reservados.
-    div
-      a(href="https://github.com/bragr05")
-        i.fa-brands.fa-github.footer-item
+    div.flex-colum-item
+      div
+        h4 About Society
+      div
+        a(href="#").a-element home
+      div
+        a(href="#").a-element Get in touch
+      div 
+        a(href="#").a-element FAQs
+    div.flex-colum-item
+      div
+        h4 Product
+      div
+        a(href="#").a-element Member discounts
+    div.flex-colum-item-no-padding
+      div
+        p.p-join-element Join and receive the best offers of the moment. No spam.
+      div
+        input(type="text").footer-input
+        button(type="button").footer-button Subscribe
+
+  div.footer-contenedor
+    div.flex-colum-item
+      div.center-item
+        i.fa-brands.fa-facebook
+        i.fa-brands.fa-instagram
+        i.fa-brands.fa-square-x-twitter
+        i.fa-solid.fa-location-dot
+      div.center-item
+        p Copyright All rights reserved
