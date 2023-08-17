@@ -8,12 +8,25 @@ block body-contenido
   div
     div.body-contenido
       div.perfil-contenedor
-        div.perfil-centro
-          p.perfil-titulo Account Information
-          p.perfil-texto.nombre= 'Full name: ' + userData.firstName + ' ' + userData.lastName
-          p.perfil-texto.email= 'Email: ' + userData.email
-          p.perfil-texto.username= 'Username: ' + userData.username
-          p.perfil-texto.username= 'Since: ' + userData.registeredSince
-          p.perfil-locacion= 'Location: ' +userData.location.province + ', ' + userData.location.canton + ', ' + userData.location.district
+        div.flex-center-container
+          i.fa-regular.fa-circle-user
+        p.profile-title Your Information
+
+        p.perfil-p Full Name
+        input(type="text" readonly="true" value=` ${userData.firstName} ${userData.lastName}`).profile-input
+
+        p.perfil-p Email
+        input(type="text" readonly="true" value=` ${userData.email}`).profile-input
+
+        p.perfil-p Username
+        input(type="text" readonly="true" value=` ${userData.username}`).profile-input
+
+        - const registeredDate = new Date(userData.registeredSince);
+        - const formattedDate = `${registeredDate.getDate()}-${registeredDate.getMonth() + 1}-${registeredDate.getFullYear()}`;
+        p.perfil-p Registered Date
+        input(type="text" readonly="true" value=`${formattedDate}`).profile-input
+        
+        p.perfil-p Location
+        input(type="text" readonly="true" value=`${userData.location.province}, ${userData.location.canton}, ${userData.location.district}`).profile-input
 
 

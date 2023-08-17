@@ -1,45 +1,49 @@
 .perfil-contenedor{
   display: flex;
-  justify-content: center;
-  padding: 3%;
-  align-items: center;
-}
-
-.perfil-centro{
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 400px;
+  justify-content: left;
+  padding: 1rem;
 }
 
-.perfil-titulo{
-  font-family: 'Geologica', sans-serif;
-  font-size: 18px;
+.perfil-p{
+  margin-top: 1.5rem;
+  color: #f75a27;
   font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
 }
 
-.perfil-texto{
-  font-size: 16px;
+.profile-input {
+  margin-top: 0rem;
+  padding: 0.5rem;
+  border: solid 1px transparent;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  outline: none;
+  font-size: 1rem;
+
+  font-family: "Heebo", sans-serif;
   font-weight: 300;
-  margin-bottom: 0.5rem;
+  color: #202020;
+  width: 100%;
 }
 
-.perfil-locacion{
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
+.profile-title{
+  margin-top: 1.5rem;
+  color: #202020;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
-.perfil-etiqueta{
-  font-size: 16px;
-  font-weight: 400;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
+.perfil-contenedor i {
+  font-size: 6rem;
+  color: #f0f0f0;
+  z-index: -2;
+}
+
+.flex-center-container{
+  display: flex;
+  justify-content: center;
 }
 
 

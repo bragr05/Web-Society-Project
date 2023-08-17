@@ -14,3 +14,20 @@ mixin slider(NikeData)
     .slider-nav
       button.slider-nav-boton-prev &#8249;
       button.slider-nav-boton-next &#8250;
+      
+script.
+  const sliderContainer = document.querySelector('.slider');
+  const sliderElements = document.querySelectorAll('.slider-elemento');
+  let currentIndex = 0;
+
+  function moveToNextSlide() {
+    sliderElements[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % sliderElements.length;
+    sliderElements[currentIndex].classList.add('active');
+  }
+
+  function startAutoSlide() {
+    setInterval(moveToNextSlide, 1000); // Cambia de slide cada 3 segundos
+  }
+
+  startAutoSlide();
