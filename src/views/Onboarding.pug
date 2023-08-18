@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    link(rel="stylesheet" href="/css/Onboarding.css")
+    link(rel="stylesheet" href="/css/general.css")
+    link(rel="stylesheet" href="/css/logo.css")
+
+    script(src="https://kit.fontawesome.com/a2ec7d5873.js" crossorigin="anonymous")
+  body
+    header.header
+        div.contendor-logotipo
+          div.contenedor-logo-slogan
+            p.logo SOCIETY
+            p.slogan INSIDE UTOPIA
+          div.circulo
+    div.container
+      .slider-container
+        each element in data
+          .img-slider-container
+            img(src=`/images/Onboarding/${element.image}`, alt=`Image ${element.image}`).img-slider
+            div.icon-container
+              i(class=element.icon)
+            div.text-slider-container
+              p= element.text
+            
+    div.container-controlls
+      button.btn-next(onclick="plusSlides(1)") Next
+      button.btn-end-onboarding(onclick="endOnboarding()") Skip
+          
+    script.
+      let slideIndex = 1;
+
+      const showSlides = (n) => {
+        const slides = document.querySelectorAll(".img-slider-container");
+        const transitionDuration = 500; 
+
+        const btnNext = document.querySelector(".btn-next");
+        
+        if (n > slides.length - 1){
+          btnNext.style.display = "none";
+        }
+        if (n > slides.length) {
+          slideIndex = 3;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        slides.forEach(slide => {
+          slide.style.display = "none";
+        });
+        slides[slideIndex - 1].style.display = "block";
+      };
+
+      const plusSlides = (n) => {
+        showSlides(slideIndex += n);
+      };
+
+      const endOnboarding = () => {
+        alert("HOLA");
+      };
+
+      showSlides(slideIndex);
+
+

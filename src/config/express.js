@@ -47,6 +47,7 @@ import routershoppingCart from "../routes/shoppingCart.routes.js";
 import routerChangePassword from "../routes/changePassword.routes.js";
 import routerLocation from "../routes/location.routes.js";
 import routerAdmin from "../routes/admin.routes.js";
+import onboardingRouter from "../routes/Onboarding.js";
 
 app.use(routerLogin);
 app.use(routerRegistration);
@@ -57,6 +58,7 @@ app.use(routershoppingCart);
 app.use(routerChangePassword);
 app.use(routerLocation);
 app.use(routerAdmin);
+app.use(onboardingRouter);
 
 // Exportar la aplicación
 export default app;
