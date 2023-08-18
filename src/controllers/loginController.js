@@ -81,12 +81,12 @@ const loginController = {
         userId: user._id,
       };
 
-      console.log(user.isAdmin);
-
       //Almecenar el secreto generado y fecha generacion del token
       req.session.tokenData = tokenData;
       req.session.loginData = loginData;
       req.session.isAdmin = user.isAdmin;
+      req.session.onboarding = user.onboarding;
+      req.session.username = user.username;
 
       res.render("loginToken");
     } catch (error) {
@@ -159,12 +159,25 @@ const loginController = {
       });
       loginInformation.save();
 
-
       delete req.session.loginData;
       delete req.session.tokenData;
 
+      const onboarding = req.session.onboarding;
+      const username = req.session.username;
+
+      delete req.session.onboarding;
+      delete req.session.username;
+
       if (req.session.isAdmin) {
         res.redirect(`add-product-page`);
+      } else if (onboarding) {
+        //Actualizar para que solo aparezca una vez
+        Users.updateOne(
+          { username: username },
+          { $set: { onboarding: false } }
+        ).then((result) => {
+          res.redirect("/onboarding");
+        });
       } else {
         res.redirect("/");
       }

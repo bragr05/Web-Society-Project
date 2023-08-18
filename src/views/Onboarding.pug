@@ -36,12 +36,14 @@ html
         const transitionDuration = 500; 
 
         const btnNext = document.querySelector(".btn-next");
+        const btnSkip = document.querySelector(".btn-end-onboarding");
         
         if (n > slides.length - 1){
           btnNext.style.display = "none";
         }
-        if (n > slides.length) {
+        if (n >= slides.length) {
           slideIndex = 3;
+          btnSkip.textContent = "Continue"
         }
         if (n < 1) {
           slideIndex = slides.length;
@@ -57,7 +59,7 @@ html
       };
 
       const endOnboarding = () => {
-        alert("HOLA");
+        window.location.href = "http://localhost:30000/";
       };
 
       showSlides(slideIndex);
