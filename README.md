@@ -18,9 +18,7 @@ This project consists of the development of a web page for the purchase of cloth
 - `Express`: This project uses the Node.js express library to handle HTTP requests and responses.
 - `Dotenv`: For environment variables manipulation (_see the .env.example file to know which environment variables are needed_).
 - `Mongoose`: To perform operations related to the MongoDB database.
-- `Validator` : To perform validations on the data entered by the user.
 - `express-session` : To use session variables.
 - `bcrypt` : For user key encryption.
-- `big.js` : For handling decimals in the latitude and longitude of the user's location.
 - `Speakeasy` : To generate and verify two-factor authentication tokens based on the TOTP (Time-based One-Time Password) standard.
 - `nodemailer` : In order to send the generated tokens and perform two-factor authentication.
